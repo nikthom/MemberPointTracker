@@ -24,6 +24,8 @@ default: &default
 development:
   <<: *default
   database: tracker_development
+  username: tracker
+  password: password
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -58,6 +60,8 @@ development:
 test:
   <<: *default
   database: tracker_test
+  username: tracker
+  password: password
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -82,4 +86,4 @@ production:
   <<: *default
   database: tracker_production
   username: tracker
-  password: <%= ENV['TRACKER_DATABASE_PASSWORD'] %>
+  password: password
