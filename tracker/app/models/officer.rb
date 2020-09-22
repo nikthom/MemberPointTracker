@@ -1,2 +1,3 @@
 class Officer < ApplicationRecord
+    has_secure_password
 end
