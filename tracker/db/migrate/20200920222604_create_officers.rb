@@ -6,6 +6,7 @@ class CreateOfficers < ActiveRecord::Migration[5.1]
       t.string "position"
       t.integer "UIN"
       t.integer "points"
+      t.string "password_digest"
       t.timestamps
     end
   end
