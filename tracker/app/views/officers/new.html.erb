@@ -1,0 +1,36 @@
+
+<div class="officers new">
+  <h2>Create an Account</h2>
+
+  <%= form_for(@officer, :method => 'post') do |f| %>
+
+    <table summary="Officer form fields">
+      <tr>
+        <th>Name</th>
+        <td><%= f.text_field(:name) %></td>
+      </tr>
+      <tr>
+        <th>email</th>
+        <td><%= f.text_field(:email) %></td>
+      </tr>
+      <tr>
+        <th>Position</th>
+        <td><%= f.select(:position, ["Officer"]) %></td>
+      </tr>
+      <tr>
+        <th>UIN</th>
+        <td><%= f.text_field(:UIN) %></td>
+      </tr>
+      <tr>
+        <th>Password</th>
+        <td><%= f.text_field(:password) %></td>
+      </tr>
+  
+    </table>
+
+    <div class="form-buttons">
+      <%= f.submit("Register") %>
+    </div>
+
+  <% end %>
+</div>
