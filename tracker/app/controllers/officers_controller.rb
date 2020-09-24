@@ -22,7 +22,7 @@ class OfficersController < ApplicationController
             if currentUser && currentUser.authenticate(params[:password])
                 session[:userId] = currentUser.id
                 flash[:notice] = "Success logging in!"
-                redirect_to(new_officer_path) #This should be changed to whatever the home page is later
+                redirect_to(members_path) #This should be changed to whatever the home page is later
             else
                 flash.now[:notice] = "Invalid username or password."
                 render('login')
