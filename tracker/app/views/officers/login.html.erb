@@ -1,0 +1,28 @@
+<%if !flash[:notice].blank?%>
+    <div class="notice">
+      <%=flash[:notice]%>
+    </div>
+<%end%>
+
+<div class="officers login">
+  <h2>Login</h2>
+
+  <%= form_tag(officers_attemptLogin_path :method => 'post') do %>
+
+    <table summary="Officer form fields">
+      <tr>
+        <th>Email</th>
+        <td><%= text_field_tag(:email, params[:email]) %></td>
+      </tr>
+      <tr>
+        <th>Password</th>
+        <td><%= text_field_tag(:password) %></td>
+      </tr>
+    </table>
+
+    <div class="form-buttons">
+      <%= submit_tag("Log in") %>
+    </div>
+
+  <% end %>
+</div>
