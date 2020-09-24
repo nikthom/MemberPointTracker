@@ -19,6 +19,7 @@
 .byebug_history
 Gemfile.lock
 /Gemfile.lock
-
-#ignoring config/database.yml
-/config/database.yml
+database.yml
+Gemfile
+# #ignoring config/database.yml
+# /config/database.yml
