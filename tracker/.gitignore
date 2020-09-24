@@ -21,3 +21,5 @@ Gemfile.lock
 /Gemfile.lock
 database.yml
 Gemfile
+# #ignoring config/database.yml
+# /config/database.yml
