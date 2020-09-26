@@ -13,7 +13,7 @@ class OfficersController < ApplicationController
     end
 
     def login
-        
+
     end
 
     def attemptLogin
@@ -21,7 +21,7 @@ class OfficersController < ApplicationController
             currentUser = Officer.where(:email => params[:email]).first
             if currentUser && currentUser.authenticate(params[:password])
                 session[:userId] = currentUser.id
-                flash[:notice] = "Success logging in!"
+                flash[:notice] = "User <#{params[:email]}> has successfully logged in!"
                 redirect_to(members_path) #This should be changed to whatever the home page is later
             else
                 flash.now[:notice] = "Invalid username or password."
