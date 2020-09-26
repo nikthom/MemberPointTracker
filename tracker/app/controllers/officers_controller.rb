@@ -34,6 +34,6 @@ class OfficersController < ApplicationController
     end
 
     def officerParams
-        params.require(:officer).permit(:name, :email, :position, :UIN, :password)
+        params.require(:officer).permit(:name, :email, :position, :uin, :password)
     end
 end
