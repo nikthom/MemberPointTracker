@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200920223000) do
+ActiveRecord::Schema.define(version: 20200926071235) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "attendance_entries", force: :cascade do |t|
-    t.integer "UIN"
+    t.integer "uin"
     t.integer "eventId"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20200920223000) do
   create_table "members", force: :cascade do |t|
     t.string "name"
     t.string "email"
-    t.integer "UIN"
+    t.integer "uin"
     t.integer "points"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 20200920223000) do
     t.string "name"
     t.string "email"
     t.string "position"
-    t.integer "UIN"
+    t.integer "uin"
     t.integer "points"
     t.string "password_digest"
     t.datetime "created_at", null: false

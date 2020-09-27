@@ -1,7 +1,12 @@
 class MembersController < ApplicationController
+  helper_method :sort_column, :sort_direction
+
 
   def index
-    @members = Member.order(:points => "desc")
+    #@members = Member.order(:points => "desc")
+    @members = Member.order(sort_column + " " + sort_direction) #query db in asc/desc order
+  
+    #flash[:notice] = "There are #{@members.size} members available."
   end
 
   def show
@@ -60,7 +65,15 @@ class MembersController < ApplicationController
   private
 
   def member_params
-    params.require(:member).permit(:name, :email, :UIN, :points )
+    params.require(:member).permit(:name, :email, :uin, :points )
+  end
+
+  def sort_column
+    Member.column_names.include?(params[:sort]) ? params[:sort]: "points"
+  end
+  
+  def sort_direction
+    %w[ASC DESC].include?(params[:direction]) ? params[:direction] : "DESC"
   end
 
 end
