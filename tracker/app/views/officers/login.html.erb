@@ -1,0 +1,40 @@
+<p><b>**** By entering this system and entering any data requested, I am giving my consent to share data related to
+
+my involvement with the student organization. Should I no longer wish to share the data I've provided,
+
+I will notify the student organization. ****</b></p>
+
+
+
+<%if !flash[:notice].blank?%>
+    <div class="notice">
+      <%=flash[:notice]%>
+    </div>
+<%end%>
+
+<div class="officers login">
+  <h2>Login</h2>
+
+  <%= form_tag(officers_attemptLogin_path :method => 'post') do %>
+
+    <table summary="Officer form fields">
+      <tr>
+        <th>Email</th>
+        <td><%= text_field_tag(:email, params[:email]) %></td>
+      </tr>
+      <tr>
+        <th>Password</th>
+        <td><%= text_field_tag(:password) %></td>
+      </tr>
+    </table>
+
+    <div class="form-buttons">
+      <%= submit_tag("Log in") %>
+    </div>
+
+  <% end %>
+</div>
+<p>Don't have an account? Register here:</p>
+<button>
+    <%= link_to("Create an Account", new_officer_path, :class => 'action new') %>
+</button>

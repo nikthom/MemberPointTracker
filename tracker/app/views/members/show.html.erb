@@ -1,0 +1,39 @@
+<% if !flash[:notice].blank?%>
+    <div class="notice">
+        <%= flash[:notice]%>
+    </div>
+<%end%>
+
+<%= link_to("<< Back to List", members_path, :class => 'back-link') %>
+
+<div class="members show">
+  <h2>Show member</h2>
+
+  <table summary="member detail view">
+    <tr>
+      <th>Name</th>
+      <td><%= @member.name %></td>
+    </tr>
+    <tr>
+      <th>Email</th>
+      <td><%= @member.email %></td>
+    </tr>
+    <tr>
+      <th>UIN</th>
+      <td><%= @member.uin %></td>
+    </tr>
+    <tr>
+      <th>Points</th>
+      <td><%= @member.points %></td>
+    </tr>
+    <tr>
+      <th>Created</th>
+      <td><%= @member.created_at %></td>
+    </tr>
+    <tr>
+      <th>Updated</th>
+      <td><%= @member.updated_at %></td>
+    </tr>
+  </table>
+
+</div>

@@ -1,0 +1,33 @@
+<%= link_to("<< Back to List", members_path, :class => 'back-link') %>
+
+<div class="members new">
+  <h2>Create Member</h2>
+
+  <%= form_for(@member, :url => members_path, :method => 'post') do |f| %>
+
+    <table summary="Member form fields">
+      <tr>
+        <th>Name</th>
+        <td><%= f.text_field(:name) %></td>
+      </tr>
+      <tr>
+        <th>email</th>
+        <td><%= f.text_field(:email) %></td>
+      </tr>
+      <tr>
+        <th>UIN</th>
+        <td><%= f.text_field(:uin) %></td>
+      </tr>
+      <tr>
+        <th>Points</th>
+        <td><%= f.text_field(:points) %></td>
+      </tr>
+    </table>
+
+    <div class="form-buttons">
+      <%= f.submit("Add New Member") %>
+    </div>
+
+  <% end %>
+</div>
+
