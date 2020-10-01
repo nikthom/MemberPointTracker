@@ -7,7 +7,9 @@ Steps to setup Rspec and Capybara
     a. gem 'rspec-rails'
 
     b. gem 'capybara', '>= 2.15'
+    
     c. gem 'selenium-webdriver'
+    
     d. gem 'webdrivers'
     
 2.  run bundle install 
