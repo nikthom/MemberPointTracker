@@ -6,11 +6,10 @@ Steps to setup Rspec and Capybara
     #rspec testing framework
     gem 'rspec-rails'
 
-    '#' Adds support for Capybara system testing and selenium driver
     gem 'capybara', '>= 2.15'
     gem 'selenium-webdriver'
-    '#' Easy installation and use of web drivers to run system tests with browsers
     gem 'webdrivers'
+    
 2.  run bundle install 
 3.  You should have spec directory
 4.  In that directory you can add tests. Look at spec/views/login_pace_spec.rb for reference
