@@ -2,13 +2,13 @@
 A rails webapp that is used by tamu organizations to take and track member attendance.
 
 Steps to setup Rspec and Capybara
-1. In gem filed under group ':development, :test do' include:
-    #rspec testing framework
-    gem 'rspec-rails'
+1. In gem filed under group ':development, :test do' include these 4 gems
+   
+    a. gem 'rspec-rails'
 
-    gem 'capybara', '>= 2.15'
-    gem 'selenium-webdriver'
-    gem 'webdrivers'
+    b. gem 'capybara', '>= 2.15'
+    c. gem 'selenium-webdriver'
+    d. gem 'webdrivers'
     
 2.  run bundle install 
 3.  You should have spec directory
