@@ -16,6 +16,11 @@ class OfficersController < ApplicationController
 
     end
 
+    def logout
+        session[:userId] = nil
+        redirect_to(root_path)
+    end
+
     def attemptLogin
         if params[:email].present? && params[:password].present?
             currentUser = Officer.where(:email => params[:email]).first
