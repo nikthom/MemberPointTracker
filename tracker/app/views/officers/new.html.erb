@@ -1,42 +1,56 @@
+<div class="container-fluid">
+<div class="row justify-content-md-center">
+    <div class="col-lg-4 my-5">
+      <!-- Material form login -->
+      <%if !flash[:notice].blank?%>
+        <div class="alert alert-danger">
+          <%=flash[:notice]%>
+        </div>
+      <%end%>
+      <div class="card mt-5">
 
-<%if !flash[:notice].blank?%>
-    <div class="notice">
-      <%=flash[:notice]%>
+          <h2 class="card-header text-center py-4" style="background: lightblue">
+              Create an Account
+          </h2>
+        
+          <!--Card content-->
+          <div class="card-body px-lg-5 pt-0">
+            <%= form_for(@officer, :method => 'post') do |f| %>
+              
+              <div class="mb-4">
+                  <h4 class="mb-2">Name<h4>
+                  <%= f.text_field(:name) %>
+              </div>
+
+              <div class="mb-4">
+                <h4 class="mb-2">Email<h4>
+                <%= f.password_field(:email) %>
+              </div>
+
+              <div class="mb-4">
+                <h4 class="mb-2">Password<h4>
+                <%= f.password_field(:password) %>
+              </div>
+
+              <div class="mb-4">
+                <h4 class="mb-2">Position<h4>
+                <%= f.select(:position, ["Officer", "Above officer"]) %>
+              </div>
+
+              <div class="mb-4">
+                <h4 class="mb-2">UIN<h4>
+                <%= f.text_field(:uin) %>
+              </div>
+
+              <div class="text-center mb-1 pb-1">
+                <!-- Sign in button -->
+                <button type="submit" class="btn btn-primary btn-lg mb-3">Register</button>
+
+              </div>
+            <% end %>
+          </div>
+      </div>
     </div>
-<%end%>
-
-<div class="officers new">
-  <h2>Create an Account</h2>
-
-  <%= form_for(@officer, :method => 'post') do |f| %>
-
-    <table summary="Officer form fields">
-      <tr>
-        <th>Name</th>
-        <td><%= f.text_field(:name) %></td>
-      </tr>
-      <tr>
-        <th>email</th>
-        <td><%= f.text_field(:email) %></td>
-      </tr>
-      <tr>
-        <th>Position</th>
-        <td><%= f.select(:position, ["Officer"]) %></td>
-      </tr>
-      <tr>
-        <th>UIN</th>
-        <td><%= f.text_field(:uin) %></td>
-      </tr>
-      <tr>
-        <th>Password</th>
-        <td><%= f.text_field(:password) %></td>
-      </tr>
-  
-    </table>
-
-    <div class="form-buttons">
-      <%= f.submit("Register") %>
-    </div>
-
-  <% end %>
 </div>
+</div>
+
