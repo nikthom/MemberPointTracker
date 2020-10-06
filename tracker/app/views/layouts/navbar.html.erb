@@ -9,15 +9,21 @@
   </head>
 
   <body>
-    <nav class="navbar justify-content-between py-3" style="background: rgb(128,0,0); opacity: 0.9">
-        <h1 class="navbar-brand text-white text-bold">ASABE-MPT</h1>
-        <div class="nav-item">
-            <a href="officers/logout" class="btn btn-primary btn-lg" role="button">
-                  Logout
-            </a>
+    <div class="container-fluid mb-3">
+        <div class=" row py-3" style="background: rgb(128,0,0); opacity: 0.9">
+            <div class="col-md-10">
+                <div class="row ml-3">
+                    <h1 class="text-white text-bold ml-4">ASABE-MPT</h1>
+                    <%=link_to('Home', members_path, class: 'nav-item nav-link text-white ml-4 my-nav-item')%>
+                    <%=link_to('Export Data', root_path, class: 'nav-item nav-link text-white ml-4 my-nav-item')%>
+                    <%=link_to('Point Change Log', root_path, class: 'nav-item nav-link text-white ml-4 my-nav-item')%>
+                </div>
+            </div>
+            <div class="col-md-2 justify-content-end">
+                <%=link_to('Logout', root_path, class: 'btn btn-primary btn-lg mb-3')%>
+            </div>
         </div>
-    
-    </nav>
+    </div>
     <%= yield %>
   </body>
 </html>
