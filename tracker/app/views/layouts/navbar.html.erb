@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tracker</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+     
+  </head>
+
+  <body>
+    <nav class="navbar justify-content-between py-3" style="background: rgb(128,0,0); opacity: 0.9">
+        <h1 class="navbar-brand text-white text-bold">ASABE-MPT</h1>
+        <div class="nav-item">
+            <div class="btn btn-primary btn-lg">
+                Logout
+            </div>
+        </div>
+    
+    </nav>
+    <%= yield %>
+  </body>
+</html>
