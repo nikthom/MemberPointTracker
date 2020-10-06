@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   
   get "officers/login"
   post "officers/attemptLogin"
+  get "officers/logout"
   resources :officers do
     member do
       get :delete
