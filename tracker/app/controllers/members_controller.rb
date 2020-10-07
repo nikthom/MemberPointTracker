@@ -7,6 +7,12 @@ class MembersController < ApplicationController
     @members = Member.order(sort_column + " " + sort_direction) #query db in asc/desc order
   
     #flash[:notice] = "There are #{@members.size} members available."
+
+    @membersUnsorted = Member.all
+    respond_to do |format|
+      format.html
+      format.csv {send_data @membersUnsorted.to_csv, filename: "members-#{Date.today}.csv" }
+    end
   end
 
   def show
