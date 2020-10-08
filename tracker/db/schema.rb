@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_26_071235) do
+ActiveRecord::Schema.define(version: 2020_10_06_152308) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,11 +51,13 @@ ActiveRecord::Schema.define(version: 2020_09_26_071235) do
   end
 
   create_table "point_entries", force: :cascade do |t|
-    t.integer "UIN"
+    t.integer "uin"
     t.string "comment"
     t.integer "officerId"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "points_add"
+    t.integer "points_remove"
   end
 
 end
