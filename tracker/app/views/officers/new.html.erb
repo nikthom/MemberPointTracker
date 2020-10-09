@@ -12,11 +12,11 @@
           <h2 class="card-header text-center py-4" style="background: lightblue">
               Create an Account
           </h2>
-        
+
           <!--Card content-->
           <div class="card-body px-lg-5 pt-0">
             <%= form_for(@officer, :method => 'post') do |f| %>
-              
+
               <div class="mb-4">
                   <h4 class="mb-2">Name<h4>
                   <%= f.text_field(:name) %>
@@ -24,7 +24,7 @@
 
               <div class="mb-4">
                 <h4 class="mb-2">Email<h4>
-                <%= f.password_field(:email) %>
+                <%= f.text_field(:email) %>
               </div>
 
               <div class="mb-4">
@@ -53,4 +53,3 @@
     </div>
 </div>
 </div>
-

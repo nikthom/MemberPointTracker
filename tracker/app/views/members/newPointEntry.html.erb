@@ -1,0 +1,47 @@
+<%= link_to("<< Back to List", members_path, :class => 'back-link') %>
+
+<div class="members points entry">
+  <h2>Add or Substract Points</h2>
+
+   <%= form_for(@point_entry, :url => members_processNewPointEntry_path, :method => 'post') do |f| %>
+   <div class="row justify-content-center">
+   <div class="col-auto">
+    <table summary="Point Entries form fields">
+
+      <tr>
+        <th>UIN</th>
+        <td><%= f.text_field(:uin) %></td>
+      </tr>
+
+      <tr>
+        <th>Officer ID</th>
+        <td><%= session[:userId] %></td>
+      </tr>
+
+      <tr>
+        <th>Amount of points to be added</th>
+        <td><%= f.text_field(:points_add) %></td>
+      </tr>
+
+      <tr>
+        <th>Amount of points to be removed</th>
+        <td><%= f.text_field(:points_remove) %></td>
+      </tr>
+
+      <tr>
+        <th>Comment</th>
+        <td><%= f.text_field(:comment) %></td>
+      </tr>
+
+    </table>
+
+    <div class="form-buttons">
+      <%= f.submit("Confirm Points Changes") %>
+    </div>
+    </div>
+    </div>
+
+
+
+  <% end %>
+</div>
