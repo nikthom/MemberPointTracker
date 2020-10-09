@@ -10,54 +10,52 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_06_152308) do
-
+ActiveRecord::Schema.define(version: 20_201_006_152_308) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "attendance_entries", force: :cascade do |t|
-    t.integer "uin"
-    t.integer "eventId"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'attendance_entries', force: :cascade do |t|
+    t.integer 'uin'
+    t.integer 'eventId'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "events", force: :cascade do |t|
-    t.string "name"
-    t.string "description"
-    t.integer "pointsWorth"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'events', force: :cascade do |t|
+    t.string 'name'
+    t.string 'description'
+    t.integer 'pointsWorth'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "members", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.integer "uin"
-    t.integer "points"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'members', force: :cascade do |t|
+    t.string 'name'
+    t.string 'email'
+    t.integer 'uin'
+    t.integer 'points'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "officers", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.string "position"
-    t.integer "uin"
-    t.integer "points"
-    t.string "password_digest"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'officers', force: :cascade do |t|
+    t.string 'name'
+    t.string 'email'
+    t.string 'position'
+    t.integer 'uin'
+    t.integer 'points'
+    t.string 'password_digest'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "point_entries", force: :cascade do |t|
-    t.integer "uin"
-    t.string "comment"
-    t.integer "officerId"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "points_add"
-    t.integer "points_remove"
+  create_table 'point_entries', force: :cascade do |t|
+    t.integer 'uin'
+    t.string 'comment'
+    t.integer 'officerId'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.integer 'points_add'
+    t.integer 'points_remove'
   end
-
 end
