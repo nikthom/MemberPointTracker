@@ -1,15 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe 'Log in page', type: :system do
-  describe 'Go to  log in page' do
+  describe 'Go to log in page' do
     it 'expects page to prompt user to' do
       visit officers_login_path
-      expect(page).to have_content('Login')
+      expect(page).to have_content('Log In')
     end
   end
 
   describe 'has form' do
-    it 'promots users for email and password' do 
+    it 'promots users for email and password' do
         visit officers_login_path
         expect(page).to have_selector("form")
         expect(page).to have_field("email")
@@ -22,7 +22,7 @@ RSpec.describe 'Log in page', type: :system do
         visit officers_login_path
         fill_in(:email, :with => "invalid@email.com")
         fill_in(:password, :with => "wrongpassword")
-        click_button "Log in"
+        click_button "Log In"
         expect(page).to have_content("Invalid username or password.")
     end
    end
@@ -32,16 +32,17 @@ RSpec.describe 'Log in page', type: :system do
         visit officers_login_path
         fill_in(:email, :with => "admin@email.com")
         fill_in(:password, :with => "password")
-        click_button "Log in"
+        click_button "Log In"
         expect(page).to have_content("Manage Members")
     end
     end
 
-    describe 'user wants to create an account' do 
-        it 'shows Create an Account page' do 
+    describe 'user wants to create an account' do
+        it 'shows Create an Account page' do
             visit officers_login_path
-            expect(page).to have_selector(:link_or_button, "Create an Account")
-            click_button "Create an Account"
+            expect(page).to have_selector(:link_or_button, "Sign Up")
+            # Sign Up is a link NOT a button
+            click_link "Sign Up"
             expect(page).to have_content("Create an Account")
         end
     end
@@ -49,7 +50,7 @@ RSpec.describe 'Log in page', type: :system do
     describe 'user creates a new account and logs in with credentials' do
         it 'shows manage members page' do
             visit officers_login_path
-            click_button "Create an Account"
+            click_link "Sign Up"
             #sleep(3)
             expect(page).to have_content("Create an Account")
             expect(page).to have_field("officer[name]")
@@ -64,11 +65,10 @@ RSpec.describe 'Log in page', type: :system do
             sleep(1)
             fill_in(:email, :with => "cTest@email.com")
             fill_in(:password, :with => "password")
-            click_button "Log in"
+            click_button "Log In"
             expect(page).to have_content("Manage Members")
 
         end
     end
 
 end
-

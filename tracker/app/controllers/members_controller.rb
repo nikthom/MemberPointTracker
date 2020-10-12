@@ -1,12 +1,18 @@
 class MembersController < ApplicationController
   helper_method :sort_column, :sort_direction
-
+  layout 'navbar'
 
   def index
     #@members = Member.order(:points => "desc")
     @members = Member.order(sort_column + " " + sort_direction) #query db in asc/desc order
-  
+
     #flash[:notice] = "There are #{@members.size} members available."
+
+    @membersUnsorted = Member.all
+    respond_to do |format|
+      format.html
+      format.csv {send_data @membersUnsorted.to_csv, filename: "members-#{Date.today}.csv" }
+    end
   end
 
   def show
@@ -28,7 +34,7 @@ class MembersController < ApplicationController
        redirect_to(members_path)
      else
        #if save fails, redisplay the form but the fields will already be pre-filled
-       render('new') 
+       render('new')
      end
   end
 
@@ -47,14 +53,44 @@ class MembersController < ApplicationController
       redirect_to(members_path)
     else
       #if save fails, redisplay the form but the fields will already be pre-filled
-      render('edit') 
+      render('edit')
+    end
+  end
+
+  def newPointEntry
+
+    @point_entry = PointEntry.new({:points_add => 0,:points_remove => 0 })
+
+  end
+
+  def processNewPointEntry
+    @point_entry = PointEntry.new(points_entry_params)
+    if @point_entry.uin.present? && @point_entry.uin.present? && @point_entry.points_add.present? && @point_entry.points_add.present?
+        @point_entry.save
+        if  @member =  Member.find_by_uin(@point_entry.uin)
+            @member.points += @point_entry.points_add
+            @member.points -=  @point_entry.points_remove
+            if @member.save
+              redirect_to(members_path)
+            else
+              flash.now[:notice] = "Failed to save."
+              render('newPointEntry')
+            end
+        else
+          flash.now[:notice] = "Can't find member with the UIN entered."
+          render('newPointEntry')
+        end
+
+    else
+          flash.now[:notice] = "Please fill in all the info. "
+          render('newPointEntry')
     end
   end
 
   def delete
     @member = Member.find(params[:id])
   end
-  
+
   def destroy
     @member = Member.find(params[:id])
     @member.destroy
@@ -64,6 +100,10 @@ class MembersController < ApplicationController
 
   private
 
+  def points_entry_params
+    params.require(:point_entry).permit(:uin, :officerId, :points_add, :points_remove, :comment)
+  end
+
   def member_params
     params.require(:member).permit(:name, :email, :uin, :points )
   end
@@ -71,7 +111,7 @@ class MembersController < ApplicationController
   def sort_column
     Member.column_names.include?(params[:sort]) ? params[:sort]: "points"
   end
-  
+
   def sort_direction
     %w[ASC DESC].include?(params[:direction]) ? params[:direction] : "DESC"
   end

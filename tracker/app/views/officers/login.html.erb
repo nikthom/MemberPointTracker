@@ -1,66 +1,55 @@
-<p><b>**** By entering this system and entering any data requested, I am giving my consent to share data related to
+<div class="container-fluid">
+<div class="row justify-content-md-center">
+    <div class="col-lg-4 my-5">
+      <!-- Material form login -->
+      <%if !flash[:notice].blank?%>
+        <div class="alert alert-danger">
+          <%=flash[:notice]%>
+        </div>
+      <%end%>
+      <div class="card mt-5">
+
+          <h2 class="card-header text-center py-4" style="background: lightblue">
+              <%= image_tag (asset_path('asabe-logo.jpg')) %>
+          </h2>
+        
+          <!--Card content-->
+          <div class="card-body px-lg-5 pt-0">
+            <%= form_tag(officers_attemptLogin_path :method => 'post') do %>
+              
+              <div class="text-center mb-4">
+                  <h4 class="mb-2">Email<h4>
+                  <%= text_field_tag(:email, params[:email]) %>
+              </div>
+
+              <div class="text-center mb-4">
+                <h4 class="mb-2">Password<h4>
+                <%= password_field_tag(:password) %>
+              </div>
+
+              <div class="text-center mb-1 pb-1">
+                <!-- Sign in button -->
+                <button type="submit" class="btn btn-primary btn-lg mb-3">Log In</button>
+                <p>or</p>
+                <a href="/officers/new" class="btn btn-primary btn-sm" role="button">
+                  Sign Up
+                </a>
+
+              </div>
+            <% end %>
+              <!-- Disclaimer -->
+            <div class="text-left small">
+                <p>
+                    **** By entering this system and entering any data requested, I am giving my consent to share data related to
 
 my involvement with the student organization. Should I no longer wish to share the data I've provided,
 
-I will notify the student organization. ****</b></p>
-
-
-
-<%if !flash[:notice].blank?%>
-    <div class="notice">
-      <%=flash[:notice]%>
-    </div>
-<%end%>
-
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  This is a boostrap modal
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Bootstrap Test!</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+I will notify the student organization. ****
+                </p>
+            </div>
+          </div>
       </div>
     </div>
-  </div>
+</div>
 </div>
 
-<div class="officers login">
-  <h2>Login</h2>
-
-  <%= form_tag(officers_attemptLogin_path :method => 'post') do %>
-
-    <table summary="Officer form fields">
-      <tr>
-        <th>Email</th>
-        <td><%= text_field_tag(:email, params[:email]) %></td>
-      </tr>
-      <tr>
-        <th>Password</th>
-        <td><%= text_field_tag(:password) %></td>
-      </tr>
-    </table>
-
-    <div class="form-buttons">
-      <%= submit_tag("Log in") %>
-    </div>
-
-  <% end %>
-</div>
-<p>Don't have an account? Register here:</p>
-<button>
-    <%= link_to("Create an Account", new_officer_path, :class => 'action new') %>
-</button>
