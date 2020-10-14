@@ -1,3 +1,4 @@
+
 <% if !flash[:notice].blank?%>
     <div class="notice">
         <%= flash[:notice]%>
@@ -6,33 +7,37 @@
 
 <%= link_to("<< Back to List", members_path, :class => 'back-link') %>
 
-<div class="members show">
-  <h3><%= "Show Details of Member <#{@member.name}>"%></h3>
+<div class="officers show">
+  <h3><%= "Show Details of Officer <#{@officer.name}>"%></h3>
 
   <table summary="member detail view">
     <tr>
       <th>Name</th>
-      <td><%= @member.name %></td>
+      <td><%= @officer.name %></td>
     </tr>
     <tr>
       <th>Email</th>
-      <td><%= @member.email %></td>
+      <td><%= @officer.email %></td>
+    </tr>
+    <tr>
+      <th>Position</th>
+      <td><%= @officer.position %></td>
     </tr>
     <tr>
       <th>UIN</th>
-      <td><%= @member.uin %></td>
+      <td><%= @officer.uin %></td>
     </tr>
     <tr>
       <th>Points</th>
-      <td><%= @member.points %></td>
+      <td><%= @officer.points %></td>
     </tr>
     <tr>
       <th>Created</th>
-      <td><%= @member.created_at %></td>
+      <td><%= @officer.created_at %></td>
     </tr>
     <tr>
       <th>Updated</th>
-      <td><%= @member.updated_at %></td>
+      <td><%= @officer.updated_at %></td>
     </tr>
   </table>
 

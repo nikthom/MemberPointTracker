@@ -1,12 +1,11 @@
 <%= link_to("<< Back to List", members_path, :class => 'back-link') %>
 
-<div class="members edit">
-  <h2>Update a Member's Info</h2>
-  <h3><%= "Update Member Info for <#{@member.name}>"%> </h3>
+<div class="officers edit">
+  <h3><%= "Update Officer Info for <#{@officer.name}>"%> </h3>
 
-  <%= form_for(@member) do |f| %>
+  <%= form_for(@officer) do |f| %>
 
-    <table summary="Member form fields">
+    <table summary="Officer form fields">
       <tr>
         <th>Name</th>
         <td><%= f.text_field(:name) %></td>
@@ -14,6 +13,10 @@
       <tr>
         <th>Email</th>
         <td><%= f.text_field(:email) %></td>
+      </tr>
+      <tr>
+        <th>Position</th>
+        <td><%= f.select(:position, ["Officer", "Above officer"]) %></td>
       </tr>
       <tr>
         <th>UIN</th>
@@ -26,7 +29,7 @@
     </table>
 
     <div class="form-buttons">
-      <%= f.submit("Update Member") %>
+      <%= f.submit("Update Officer") %>
     </div>
 
   <% end %>

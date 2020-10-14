@@ -1,11 +1,11 @@
 class MembersController < ApplicationController
-  helper_method :sort_column, :sort_direction
+  helper_method :sort_column_members, :sort_direction_members, :sort_direction_officers, :sort_column_officers
   layout 'navbar'
 
   def index
     #@members = Member.order(:points => "desc")
-    @members = Member.order(sort_column + " " + sort_direction) #query db in asc/desc order
-
+    @members = Member.order(sort_column_members + " " + sort_direction_members) #query db in asc/desc order
+    @officers = Officer.order(sort_column_officers + " " + sort_direction_officers)
     #flash[:notice] = "There are #{@members.size} members available."
 
     @membersUnsorted = Member.all
@@ -30,7 +30,7 @@ class MembersController < ApplicationController
      #save the object
      if @member.save
        #if save succeeds, redirect to the index action
-       flash[:notice] = "#{@member.name} was created successfully"
+       flash[:notice] = "A member <#{@member.name}> was created successfully"
        redirect_to(members_path)
      else
        #if save fails, redisplay the form but the fields will already be pre-filled
@@ -49,7 +49,7 @@ class MembersController < ApplicationController
     #update the object
     if @member.update_attributes(member_params)
       #if save succeeds, redirect to the show action
-      flash[:notice] = "#{@member.name} was updated successfully"
+      flash[:notice] = "A member <#{@member.name}> was updated successfully"
       redirect_to(members_path)
     else
       #if save fails, redisplay the form but the fields will already be pre-filled
@@ -94,7 +94,7 @@ class MembersController < ApplicationController
   def destroy
     @member = Member.find(params[:id])
     @member.destroy
-    flash[:notice] = "#{@member.name} was deleted successfully"
+    flash[:notice] = "A member <#{@member.name}> was deleted successfully"
     redirect_to(members_path)
   end
 
@@ -108,11 +108,19 @@ class MembersController < ApplicationController
     params.require(:member).permit(:name, :email, :uin, :points )
   end
 
-  def sort_column
+  def sort_column_members
     Member.column_names.include?(params[:sort]) ? params[:sort]: "points"
   end
 
-  def sort_direction
+  def sort_direction_members
+    %w[ASC DESC].include?(params[:direction]) ? params[:direction] : "DESC"
+  end
+
+  def sort_column_officers
+    Officer.column_names.include?(params[:sort]) ? params[:sort]: "points"
+  end
+
+  def sort_direction_officers
     %w[ASC DESC].include?(params[:direction]) ? params[:direction] : "DESC"
   end
 
