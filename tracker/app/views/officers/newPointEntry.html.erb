@@ -1,9 +1,9 @@
 <%= link_to("<< Back to List", members_path, :class => 'back-link') %>
 
 <div class="members points entry">
-  <h2>Add or Substract Points for a Member identified by his/her UIN</h2>
+  <h2>Add or Substract Points for an Officer identified by his/her UIN</h2>
 
-   <%= form_for(@point_entry, :url => members_processNewPointEntry_path, :method => 'post') do |f| %>
+   <%= form_for(@point_entry, :url => officers_processNewPointEntry_path, :method => 'post') do |f| %>
    <div class="row justify-content-center">
    <div class="col-auto">
     <table summary="Point Entries form fields">

@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get "officers/login"
   post "officers/attemptLogin"
   get "officers/logout"
+  get "officers/newPointEntry"
+  post "officers/processNewPointEntry"
 
   get "members/newPointEntry"
   post "members/processNewPointEntry"
