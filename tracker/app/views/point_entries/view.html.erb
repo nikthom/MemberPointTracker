@@ -1,0 +1,27 @@
+<div clas="table-responsive">
+  <table class="table table-striped">
+  <tr class="header">
+       <th><%= "Changed By"%></th>
+
+      <th><%=  "Name"%></th>
+
+      <th><%= "UIN"%></th>
+
+      <th><%=  "Points Added"%></th>
+
+      <th><%= "Points Removed"%></th>
+
+      <th><%= "Changed At"%></th>
+  </tr>
+  <% @displayEntries.each do |entry| %>
+      <tr>
+        <td><%= entry['creator'] %></td>
+        <td><%= entry['name'] %></td>
+        <td><%= entry['uin'] %></td>
+        <td><%= entry['added'] %></td>
+        <td><%= entry['removed'] %></td>
+        <td><%= entry['createdAt'] %></td>
+      </tr>
+  <% end %>
+</table>
+</div>

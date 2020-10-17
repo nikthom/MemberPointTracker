@@ -13,4 +13,11 @@ module ApplicationHelper
         link_to title, {:sort => column, :direction => direction}, {:class => css_class}
     end
 
+    def sortable_entries(column, title = nil)
+        title ||= column.titleize
+        css_class = column == sort_column_entries ? "current #{sort_direction_entries}" : nil
+        direction = column == sort_column_entries && sort_direction_entries == "ASC" ? "DESC" : "ASC"
+        link_to title, {:sort => column, :direction => direction}, {:class => css_class}
+    end
+
 end

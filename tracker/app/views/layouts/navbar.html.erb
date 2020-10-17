@@ -16,7 +16,7 @@
                     <h1 class="text-white text-bold ml-4">ASABE-MPT</h1>
                     <%=link_to('Home', members_path, class: 'nav-item nav-link text-white ml-4 my-nav-item')%>
                     <%=link_to('Export Data', members_path(@members, format: :csv), class: 'nav-item nav-link text-white ml-4 my-nav-item')%>
-                    <%=link_to('Point Change Log', root_path, class: 'nav-item nav-link text-white ml-4 my-nav-item')%>
+                    <%=link_to('Point Change Log', point_entries_view_path, class: 'nav-item nav-link text-white ml-4 my-nav-item')%>
                 </div>
             </div>
             <div class="col-md-2 justify-content-end">
