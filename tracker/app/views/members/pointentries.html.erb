@@ -1,0 +1,25 @@
+<%= link_to("<< Back to List", members_path, :class => 'back-link') %>
+
+<div class="Star points edit">
+  <h2> Star Points Edit</h2>
+</div>
+
+<%= form_for(@member) do |f| %>
+  <div class = "container">
+    <div class="row"></div>
+      <div class="col"> Name </div>
+      <div class="col"> UIN </div>
+      <div class="col"> Comment </div>
+      <div class="col"> Office ID </div>
+    <div class="w-100"></div>
+      <div class="col"><%= f.text_field(:name) %></div>
+      <div class="col"><%= f.text_field(:uin) %></div>
+      <div class="col"><%= f.text_field(:comment) %></div>
+      <div class="col"><%= f.text_field(:officerID) %></div>
+  </div>
+
+
+<div class="form-buttons">
+  <%= f.submit("Update Member") %>
+</div>
+<% end %>
