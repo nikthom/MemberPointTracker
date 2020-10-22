@@ -1,5 +1,11 @@
 class Member < ApplicationRecord
 
+    validates_uniqueness_of :uin
+
+    has_many :attendance_entries, {:foreign_key => "uin"}
+
+
+
     def self.to_csv
         attributes = %w{name email uin points}
 

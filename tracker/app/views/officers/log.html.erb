@@ -1,0 +1,29 @@
+<%= link_to("<< Back to List", members_path, :class => 'back-link') %>
+
+
+    <div class="table-responsive col-sm-6">
+
+       <h3> <%= "#{@officer.name}'s Point Log" %></h3>
+
+        <p style = "font-size: 18px"> <%= "Total Points: #{@officer.points}"   %>  </p>
+        <p style = "font-size: 18px"> <%= "Custom points: #{@totalCustomPoints}"   %>  </p> 
+        <p style = "font-size: 18px"> <%= "Attendance points: #{@totalAttendancePoints}"   %>  </p>
+        <table class="table table-striped" summary="members list">
+            <tr class="header">
+                <th><%= "Event Name"%></th>
+
+                <th><%= "Event Description"%></th>
+
+                <th><%= "Points Worth"%></th>
+
+            </tr>
+            <% @outArr.each do |event| %>
+                <tr>
+                    <td><%= event.name %></td>
+                    <td><%= event.description %></td>
+                    <td class="center"><%= event.pointsWorth %></td>
+
+                </tr>
+            <% end %>
+        </table>
+    </div>

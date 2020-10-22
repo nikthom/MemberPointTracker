@@ -18,6 +18,31 @@ class OfficersController < ApplicationController
       @officer = Officer.find(params[:id])
     end
 
+    def log 
+      @officer = Officer.find(params[:id])
+      @uin = @officer.uin
+      @customPoints = PointEntry.where(:uin => @uin)
+
+
+      @outArr = []
+      @entries = AttendanceEntry.where(:uin => @uin)
+      @customPoints = PointEntry.where(:uin => @uin)
+
+      @totalCustomPoints = 0
+
+      @customPoints.each do |n|
+        @totalCustomPoints += (n.points_add + n.points_remove)
+      end
+  
+      @totalAttendancePoints = 0
+      @entries.each do |entry| 
+        currEvent = entry.event
+        @outArr.append(currEvent)
+        @totalAttendancePoints += currEvent.pointsWorth
+      end      
+
+    end  
+
     def edit
       @officer = Officer.find(params[:id])
     end
@@ -101,6 +126,13 @@ class OfficersController < ApplicationController
       else
             flash.now[:notice] = "Please fill in all the info. "
             render('newPointEntry')
+      end
+    end
+
+    def index 
+      @officersUnsorted = Officer.all
+      respond_to do |format|
+        format.csv {send_data @officersUnsorted.to_csv, filename: "officers-#{Date.today}.csv" }
       end
     end
 
