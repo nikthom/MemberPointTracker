@@ -10,7 +10,7 @@ RSpec.describe 'Index Page', type: :system do
       click_button "Add a member"
       fill_in(:member_name, :with => "John Doe")
       fill_in(:member_email, :with => "whatever@tamu.edu")
-      fill_in(:member_uin, :with => "123456")
+      fill_in(:member_uin, :with => "12345")
       fill_in(:member_points, :with => "10")
       click_button "Add New Member"
       expect(page).to have_content("John Doe")
@@ -23,7 +23,7 @@ RSpec.describe 'Index Page', type: :system do
       fill_in(:email, :with => "admin@email.com")
       fill_in(:password, :with => "password")
       click_button "Log In"
-      click_button "Add/Substract Points"
+      click_button "Add/Substract Points to a Member"
       fill_in(:point_entry_uin, :with => "123456")
       fill_in(:point_entry_points_add, :with => "15")
       fill_in(:point_entry_points_remove, :with => "10")
@@ -39,7 +39,8 @@ RSpec.describe 'Index Page', type: :system do
       fill_in(:email, :with => "admin@email.com")
       fill_in(:password, :with => "password")
       click_button "Log In"
-      click_link "Edit"
+      first('.actions').click_link('Edit')
+
       fill_in(:member_uin, :with => "654321")
       click_button "Update Member"
       expect(page).to have_content("654321")
@@ -52,8 +53,9 @@ RSpec.describe 'Index Page', type: :system do
       fill_in(:email, :with => "admin@email.com")
       fill_in(:password, :with => "password")
       click_button "Log In"
-      click_link "Details"
-      expect(page).to have_content("Show member")
+      #click_link "Details"
+      first('.actions').click_link('Details')
+      expect(page).to have_content("Show Details of Member")
     end
   end
 
@@ -63,9 +65,17 @@ RSpec.describe 'Index Page', type: :system do
       fill_in(:email, :with => "admin@email.com")
       fill_in(:password, :with => "password")
       click_button "Log In"
-      click_link "Delete"
+      first('.actions').click_link('Delete')
       click_button "Delete Member"
       expect(page).to have_content("Manage Members")
+    end
+  end
+
+  describe 'Log in and show log for first member' do
+    it 'expect point log for first memmber' do
+      visit members_path
+      first('.actions').click_link('Points Log')
+      expect(page).to have_content("Point Log")
     end
   end
 
