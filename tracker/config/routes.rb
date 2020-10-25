@@ -17,12 +17,14 @@ Rails.application.routes.draw do
   resources :officers do
     member do
       get :delete
+      get :log
     end
   end
 
   resources :members do
     member do
       get :delete
+      get :log
     end
   end
 

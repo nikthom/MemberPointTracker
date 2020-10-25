@@ -19,6 +19,28 @@ class MembersController < ApplicationController
     @member = Member.find(params[:id])
   end
 
+  def log
+    @member = Member.find(params[:id])
+    @uin = @member.uin
+    @customPoints = PointEntry.where(:uin => @uin)
+
+    @totalCustomPoints = 0
+    @customPoints.each do |n|
+      @totalCustomPoints += (n.points_add + n.points_remove)
+    end
+
+    @outArr = []
+    @entries = AttendanceEntry.where(:uin => @uin)
+
+    @totalAttendancePoints = 0
+    @entries.each do |entry| 
+      currEvent = entry.event
+      @outArr.append(currEvent)
+      @totalAttendancePoints += currEvent.pointsWorth
+    end
+
+  end
+
   def new
     @member = Member.new({:points => 0})
   end

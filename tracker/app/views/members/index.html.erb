@@ -1,5 +1,5 @@
 <% if !flash[:notice].blank?%>
-    <div class="notice">
+    <div class="alert alert-success">
         <%= flash[:notice]%>
     </div>
 <%end%>
@@ -12,6 +12,7 @@
       <h3>Manage Members</h3>
       <%= link_to '<button type="button">Add a member</button>'.html_safe, new_member_path, :class => 'action new' %>
       <%= link_to '<button type="button">Add/Substract Points to a Member</button>'.html_safe, members_newPointEntry_path, :class => 'action newPointEntry' %>
+      <%= link_to '<button type="button">Export Member Data</button>'.html_safe, members_path(@members,format: 'csv'), :class => 'action new' %>
 
     <table class="table table-striped" summary="members list">
      <tr class="header">
@@ -32,6 +33,7 @@
         <td class="center"><%= member.uin %></td>
         <td class="center"><%= member.points %></td>
         <td class="actions">
+            <%= link_to("Points Log", log_member_path(member), :class => 'action show') %>
             <%= link_to("Details", member_path(member), :class => 'action show') %>
             <%= link_to("Edit", edit_member_path(member), :class => 'action edit') %>
             <%= link_to("Delete", delete_member_path(member), :class => 'action delete') %>
@@ -47,6 +49,7 @@
     <h3>Manage Officers</h3>
     <%= link_to '<button type="button">Add an officer</button>'.html_safe, new_officer_path, :class => 'action new' %>
     <%= link_to '<button type="button">Add/Substract Points to an Officer</button>'.html_safe, officers_newPointEntry_path, :class => 'action newPointEntry' %>
+    <%= link_to '<button type="button">Export Officer Data</button>'.html_safe, officers_path(@officers,format: 'csv'), :class => 'action new' %>
 
     <table class="table table-striped" summary="officers list">
      <tr class="header">
@@ -70,6 +73,7 @@
         <td class="center"><%= officer.uin %></td>
         <td class="center"><%= officer.points %></td>
         <td class="actions">
+            <%= link_to("Points Log", log_officer_path(officer), :class => 'action show') %>                        
             <%= link_to("Details", officer_path(officer), :class => 'action show') %>
             <%= link_to("Edit", edit_officer_path(officer), :class => 'action edit') %>
             <%= link_to("Delete", delete_officer_path(officer), :class => 'action delete') %>
