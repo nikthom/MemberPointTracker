@@ -107,6 +107,8 @@ class OfficersController < ApplicationController
 
     def processNewPointEntry
       @point_entry = PointEntry.new(points_entry_params)
+      @point_entry.officerId = session[:userId]
+      @point_entry.name = Officer.find_by_uin(@point_entry.uin).name
       if @point_entry.uin.present? && @point_entry.uin.present? && @point_entry.points_add.present? && @point_entry.points_add.present?
           @point_entry.save
           if  @officer =  Officer.find_by_uin(@point_entry.uin)

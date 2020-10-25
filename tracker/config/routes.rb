@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   get "members/newPointEntry"
   post "members/processNewPointEntry"
 
+  get "point_entries/view"
+
   resources :officers do
     member do
       get :delete
