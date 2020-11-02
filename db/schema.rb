@@ -61,4 +61,5 @@ ActiveRecord::Schema.define(version: 2020_10_22_221752) do
     t.string "name"
   end
 
+  add_foreign_key "attendance_entries", "events", column: "eventId"
 end
