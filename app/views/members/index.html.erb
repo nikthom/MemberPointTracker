@@ -1,47 +1,47 @@
 <% if !flash[:notice].blank?%>
-    <div class="alert alert-success">
-        <%= flash[:notice]%>
-    </div>
+  <div class="notice">
+    <%= flash[:notice]%>
+  </div>
 <%end%>
 
 <br>
 <div class="row">
 
-    <div class="table-responsive col-sm-6">
+  <div class="table-responsive col-sm-6">
 
-      <h3>Manage Members</h3>
-      <%= link_to '<button type="button">Add a member</button>'.html_safe, new_member_path, :class => 'action new' %>
-      <%= link_to '<button type="button">Add/Substract Points to a Member</button>'.html_safe, members_newPointEntry_path, :class => 'action newPointEntry' %>
-      <%= link_to '<button type="button">Export Member Data</button>'.html_safe, members_path(@members,format: 'csv'), :class => 'action new' %>
+    <h3>Manage Members</h3>
+    <%= link_to '<button type="button">Add a member</button>'.html_safe, new_member_path, :class => 'action new' %>
+    <%= link_to '<button type="button">Add/Substract Points to a Member</button>'.html_safe, members_newPointEntry_path, :class => 'action newPointEntry' %>
+    <%= link_to '<button type="button">Export Member Data</button>'.html_safe, members_path(@members,format: 'csv'), :class => 'action new' %>
 
     <table class="table table-striped" summary="members list">
-     <tr class="header">
-       <th><%= sortable_members "name"%></th>
+      <tr class="header">
+        <th><%= sortable_members "name"%></th>
 
-      <th><%= sortable_members "email"%></th>
+        <th><%= sortable_members "email"%></th>
 
-      <th><%= sortable_members "uin"%></th>
+        <th><%= sortable_members "uin"%></th>
 
-      <th><%= sortable_members "points"%></th>
+        <th><%= sortable_members "points"%></th>
 
-      <th>Actions</th>
-    </tr>
-    <% @members.each do |member| %>
-    <tr>
-        <td><%= member.name %></td>
-        <td><%= member.email %></td>
-        <td class="center"><%= member.uin %></td>
-        <td class="center"><%= member.points %></td>
-        <td class="actions">
+        <th>Actions</th>
+      </tr>
+      <% @members.each do |member| %>
+        <tr>
+          <td><%= member.name %></td>
+          <td><%= member.email %></td>
+          <td class="center"><%= member.uin %></td>
+          <td class="center"><%= member.points %></td>
+          <td class="actions">
             <%= link_to("Points Log", log_member_path(member), :class => 'action show') %>
             <%= link_to("Details", member_path(member), :class => 'action show') %>
             <%= link_to("Edit", edit_member_path(member), :class => 'action edit') %>
             <%= link_to("Delete", delete_member_path(member), :class => 'action delete') %>
-        </td>
-    </tr>
-    <% end %>
+          </td>
+        </tr>
+      <% end %>
     </table>
-    </div>
+  </div>
 
 
   <div class="table-responsive col-sm-6">
@@ -52,36 +52,36 @@
     <%= link_to '<button type="button">Export Officer Data</button>'.html_safe, officers_path(@officers,format: 'csv'), :class => 'action new' %>
 
     <table class="table table-striped" summary="officers list">
-     <tr class="header">
-      <th><%= sortable_officers "name"%></th>
+      <tr class="header">
+        <th><%= sortable_officers "name"%></th>
 
-      <th><%= sortable_officers "email"%></th>
+        <th><%= sortable_officers "email"%></th>
 
-      <th><%= sortable_officers "position"%></th>
+        <th><%= sortable_officers "position"%></th>
 
-      <th><%= sortable_officers "uin"%></th>
+        <th><%= sortable_officers "uin"%></th>
 
-      <th><%= sortable_officers "points"%></th>
+        <th><%= sortable_officers "points"%></th>
 
-      <th>Actions</th>
-    </tr>
-    <% @officers.each do |officer| %>
-    <tr>
-        <td><%= officer.name %></td>
-        <td><%= officer.email %></td>
-        <td class="center"><%= officer.position %></td>
-        <td class="center"><%= officer.uin %></td>
-        <td class="center"><%= officer.points %></td>
-        <td class="actions">
-            <%= link_to("Points Log", log_officer_path(officer), :class => 'action show') %>                        
+        <th>Actions</th>
+      </tr>
+      <% @officers.each do |officer| %>
+        <tr>
+          <td><%= officer.name %></td>
+          <td><%= officer.email %></td>
+          <td class="center"><%= officer.position %></td>
+          <td class="center"><%= officer.uin %></td>
+          <td class="center"><%= officer.points %></td>
+          <td class="actions">
+            <%= link_to("Points Log", log_officer_path(officer), :class => 'action show') %>
             <%= link_to("Details", officer_path(officer), :class => 'action show') %>
             <%= link_to("Edit", edit_officer_path(officer), :class => 'action edit') %>
             <%= link_to("Delete", delete_officer_path(officer), :class => 'action delete') %>
-        </td>
-    </tr>
-    <% end %>
+          </td>
+        </tr>
+      <% end %>
     </table>
-    </div>
+  </div>
 
 
 

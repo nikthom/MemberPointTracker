@@ -1,5 +1,5 @@
 <div class="container-fluid">
-<div class="row justify-content-md-center">
+  <div class="row justify-content-md-center">
     <div class="col-lg-4 my-5">
       <!-- Material form login -->
       <%if !flash[:notice].blank?%>
@@ -9,47 +9,47 @@
       <%end%>
       <div class="card mt-5">
 
-          <h2 class="card-header text-center py-4" style="background: lightblue">
-              <%= image_tag (asset_path('asabe-logo.jpg')) %>
-          </h2>
-        
-          <!--Card content-->
-          <div class="card-body px-lg-5 pt-0">
-            <%= form_tag(officers_attemptLogin_path :method => 'post') do %>
-              
-              <div class="text-center mb-4">
-                  <h4 class="mb-2">Email</h4>
-                  <%= text_field_tag(:email, params[:email]) %>
-              </div>
+        <h2 class="card-header text-center py-4" style="background: lightblue">
+          <%= image_tag (asset_path('asabe-logo.jpg')) %>
+        </h2>
 
-              <div class="text-center mb-4">
-                <h4 class="mb-2">Password</h4>
-                <%= password_field_tag(:password) %>
-              </div>
+        <!--Card content-->
+        <div class="card-body px-lg-5 pt-0">
+          <%= form_tag(officers_attemptLogin_path :method => 'post') do %>
 
-              <div class="text-center mb-1 pb-1">
-                <!-- Sign in button -->
-                <button type="submit" class="btn btn-primary btn-lg mb-3">Log In</button>
-                <p>or</p>
-                <a href="/officers/new" class="btn btn-primary btn-sm" role="button">
-                  Sign Up
-                </a>
-
-              </div>
-            <% end %>
-              <!-- Disclaimer -->
-            <div class="text-left small">
-                <p>
-                    **** By entering this system and entering any data requested, I am giving my consent to share data related to
-
-my involvement with the student organization. Should I no longer wish to share the data I've provided,
-
-I will notify the student organization. ****
-                </p>
+            <div class="text-center mb-4">
+              <h4 class="mb-2">Email</h4>
+              <%= text_field_tag(:email, params[:email]) %>
             </div>
+
+            <div class="text-center mb-4">
+              <h4 class="mb-2">Password</h4>
+              <%= password_field_tag(:password) %>
+            </div>
+
+            <div class="text-center mb-1 pb-1">
+              <!-- Sign in button -->
+              <button type="submit" class="btn btn-primary btn-lg mb-3">Log In</button>
+              <p>or</p>
+              <a href="/officers/new" class="btn btn-primary btn-sm" role="button">
+                Sign Up
+              </a>
+
+            </div>
+          <% end %>
+          <!-- Disclaimer -->
+          <div class="text-left small">
+            <p>
+              **** By entering this system and entering any data requested, I am giving my consent to share data related to
+
+              my involvement with the student organization. Should I no longer wish to share the data I've provided,
+
+              I will notify the student organization. ****
+            </p>
           </div>
+        </div>
       </div>
     </div>
-</div>
+  </div>
 </div>
 
