@@ -15,6 +15,7 @@
       <%= link_to '<button type="button">Export Member Data</button>'.html_safe, members_path(@members,format: 'csv'), :class => 'action new' %>
 
     <table class="table table-striped" summary="members list">
+     <caption>List of Members</caption>
      <tr class="header">
        <th><%= sortable_members "name"%></th>
 
@@ -52,6 +53,7 @@
     <%= link_to '<button type="button">Export Officer Data</button>'.html_safe, officers_path(@officers,format: 'csv'), :class => 'action new' %>
 
     <table class="table table-striped" summary="officers list">
+     <caption>List of Officers</caption>
      <tr class="header">
       <th><%= sortable_officers "name"%></th>
 

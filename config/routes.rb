@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root "officers#login"
 
+
   get "officers/login"
   post "officers/attemptLogin"
   get "officers/logout"
@@ -14,6 +15,10 @@ Rails.application.routes.draw do
 
   get "point_entries/view"
   get "point_entries/index"
+
+  #leaderboard routes
+  get "leaderboard/view"
+  post "leaderboard/view"
 
   resources :officers do
     member do

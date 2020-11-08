@@ -16,7 +16,7 @@
                     <h1 class="text-white text-bold ml-4">ASABE-MPT</h1>
                     <%=link_to('Home', members_path, class: 'nav-item nav-link text-white ml-4 my-nav-item')%>
                     <%=link_to('Point Change Log', point_entries_view_path, class: 'nav-item nav-link text-white ml-4 my-nav-item')%>
-                    
+                    <%=link_to('Leaderboard', leaderboard_view_path, class: 'nav-item nav-link text-white ml-4 my-nav-item')%>
                     <div class="dropdown show">
                       <a class="btn btn-link dropdown-toggle text-white ml-4 my-nav-item" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           Backup
@@ -44,9 +44,6 @@
                     </div>
 
                     <%=link_to('Participation Tracker', href = "https://asabe-pt-sandbox.herokuapp.com/", class: 'nav-item nav-link text-white ml-4 my-nav-item')%>
-
-
-
                 </div>
             </div>
 

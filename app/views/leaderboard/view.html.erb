@@ -1,0 +1,58 @@
+<a href = "/members" class="btn btn-danger btn-sm" role="button">Back to homepage</a>
+<br/>
+<br/>
+
+<div class="mb-4">    
+    <%= form_with url: leaderboard_view_path, local: true, method: :post do %>
+        <div>
+            <span style = "font-size: 22px">View</span>
+            <div>
+            <label class="radio-inline">
+                <%= radio_button_tag "reply", "Member", feedback.fetch(:reply, nil) == "Member"%>
+                <%= label_tag "reply_Member", 'Members' %>
+            </label>
+            
+            <label class="radio-inline">
+                <%= radio_button_tag "reply", "Officer", feedback.fetch(:reply, nil) == "Officer" %>
+                <%= label_tag "reply_Officer", 'Officers' %>
+            </label>
+            
+            <label class="radio-inline">
+                <%= radio_button_tag "reply", "Both", feedback.fetch(:reply, nil) == "Both"  %>
+                <%= label_tag "reply_Both", 'Both' %>
+            </label>
+            </div>
+        </div> 
+
+        <div>
+            <%= label_tag "Get Top" %>
+            <%= select_tag "count", options_for_select([ "All", "3", "5", "10", "15" ], feedback.fetch(:count, "") )  %>
+        </div>
+        <br/>
+
+        <%= submit_tag "Apply" , class: "btn btn-primary" %>
+    <% end %>
+ 
+    <br/>
+    <div class = "table-responsive">
+
+        <table class = "table table-striped ">
+            <tr class="header">
+                <th><%= "Position" %></th>
+                <th><%= "Name"%></th>
+
+                <th><%= "Points" %></th>
+            </tr>
+
+            <% @displayOut.each do |e| %>
+                <tr>
+                    <td><%= e['position'] %></td>
+                    <td><%= e['name'] %></td>
+                    <td><%= e['points'] %></td>
+                </tr>
+            
+            <% end %>        
+        
+    </div>
+
+</div>
