@@ -11,7 +11,7 @@ class PointEntriesController < ApplicationController
             displayEntry['uin'] = entry.uin
             displayEntry['added'] = entry.points_add
             displayEntry['removed'] = entry.points_remove
-            displayEntry['createdAt'] = entry.created_at
+            displayEntry['createdAt'] = entry.created_at.to_formatted_s(:custom)
             displayEntry['comments'] = entry.comment
             @displayEntries.append(displayEntry)
         end

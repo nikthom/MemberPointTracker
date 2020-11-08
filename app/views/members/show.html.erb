@@ -28,11 +28,11 @@
     </tr>
     <tr>
       <th>Created</th>
-      <td><%= @member.created_at %></td>
+      <td><%= @member.created_at.to_formatted_s(:custom) %></td>
     </tr>
     <tr>
       <th>Updated</th>
-      <td><%= @member.updated_at %></td>
+      <td><%= @member.updated_at.to_formatted_s(:custom) %></td>
     </tr>
   </table>
 
