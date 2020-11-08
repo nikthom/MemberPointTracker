@@ -4,7 +4,7 @@ class Officer < ApplicationRecord
     has_many :attendance_entries, {:foreign_key => "uin"}
 
     def self.to_csv
-        attributes = %w{name email uin points}
+        attributes = %w{name email position uin points}
 
         CSV.generate(headers: true) do |csv|
             csv << attributes

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   post "members/processNewPointEntry"
 
   get "point_entries/view"
+  get "point_entries/index"
 
   resources :officers do
     member do
@@ -27,5 +28,7 @@ Rails.application.routes.draw do
       get :log
     end
   end
+
+  get "/:page" => "static#show"
 
 end
