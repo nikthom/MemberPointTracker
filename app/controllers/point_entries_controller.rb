@@ -17,6 +17,13 @@ class PointEntriesController < ApplicationController
         end
     end
 
+    def index 
+      @pointEntry = PointEntry.order(:created_at => "desc")
+      respond_to do |format|
+        format.csv {send_data @pointEntry.to_csv, filename: "custom-point-entries-#{Date.today}.csv" }
+      end
+    end
+
 
 
   private

@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   post "members/processNewPointEntry"
 
   get "point_entries/view"
+  get "point_entries/index"
 
   #leaderboard routes
   get "leaderboard/view"
@@ -32,5 +33,7 @@ Rails.application.routes.draw do
       get :log
     end
   end
+
+  get "/:page" => "static#show"
 
 end

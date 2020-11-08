@@ -7,7 +7,7 @@ class Member < ApplicationRecord
 
 
     def self.to_csv
-        attributes = %w{name email uin points}
+        attributes = %w{name email uin points }
 
         CSV.generate(headers: true) do |csv|
             csv << attributes
