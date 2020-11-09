@@ -15,6 +15,7 @@
       <%= link_to '<button type="button">Export Member Data</button>'.html_safe, members_path(@members,format: 'csv'), :class => 'action new' %>
 
     <table class="table table-striped" summary="members list">
+     <caption>List of Members</caption>
      <tr class="header">
        <th><%= sortable_members "name"%></th>
 
@@ -33,7 +34,7 @@
         <td class="center"><%= member.uin %></td>
         <td class="center"><%= member.points %></td>
         <td class="actions">
-            <%= link_to("Points Log", log_member_path(member), :class => 'action show') %>
+            <!--<%= link_to("Points Log", log_member_path(member), :class => 'action show') %>-->
             <%= link_to("Details", member_path(member), :class => 'action show') %>
             <%= link_to("Edit", edit_member_path(member), :class => 'action edit') %>
             <%= link_to("Delete", delete_member_path(member), :class => 'action delete') %>
@@ -52,6 +53,7 @@
     <%= link_to '<button type="button">Export Officer Data</button>'.html_safe, officers_path(@officers,format: 'csv'), :class => 'action new' %>
 
     <table class="table table-striped" summary="officers list">
+     <caption>List of Officers</caption>
      <tr class="header">
       <th><%= sortable_officers "name"%></th>
 
@@ -73,7 +75,7 @@
         <td class="center"><%= officer.uin %></td>
         <td class="center"><%= officer.points %></td>
         <td class="actions">
-            <%= link_to("Points Log", log_officer_path(officer), :class => 'action show') %>                        
+            <!--<%= link_to("Points Log", log_officer_path(officer), :class => 'action show') %>-->                       
             <%= link_to("Details", officer_path(officer), :class => 'action show') %>
             <%= link_to("Edit", edit_officer_path(officer), :class => 'action edit') %>
             <%= link_to("Delete", delete_officer_path(officer), :class => 'action delete') %>

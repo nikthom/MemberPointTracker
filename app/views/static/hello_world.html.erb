@@ -1,0 +1,52 @@
+<h1 id="baller-feelings-checkpoint-2">Baller-Feelings Checkpoint 2</h1>
+<h3 id="note1-">Note1 :</h3>
+<p>For this checkpoint we are only using data from Game 1 with hashtag NBA Finals. The file we are using is “Data/Game_1_Data/game1nbafinals/game1nbafinals.json”. In the future we will expand this for all data files. Similarly, we only have one output file for Game 1 data. </p>
+<h3 id="note-2-">Note 2:</h3>
+<p>All of the output files already exist in the repository. But see the steps in the next section to see how we generated each of these files.</p>
+<p>Output Files:</p>
+<ul>
+<li>Data/Game_1_Data/game1nbafinals/game1nbafinals_parsed.json</li>
+<li>Data/Game_1_Data/game1nbafinals/game1nbafinals_cleaned.json</li>
+<li>Data/Game_1_Data/game1nbafinals/game1nbafinals_classified.json</li>
+</ul>
+<h2 id="overall-steps-of-running-code-for-checkpoint-2-">Overall steps of running code for Checkpoint 2:</h2>
+<ul>
+<li>In Data/Training_Data, Unzip the training data from its zip file. Place the unzipped .csv file in Data/Training_Data and name it “sentiment140data.csv”</li>
+<li>All subsequent commands should be run in the root directory of the project</li>
+<li>Run the command “pip install -r requirements.txt” to install all necessary python modules</li>
+<li>Run the command “python formatter.py” to move gathered tweets to a usable format.<ul>
+<li>Input file:“Data/Game_1_Data/game1nbafinals/game1nbafinals.json”</li>
+<li>Output file: “Data/Game_1_Data/game1nbafinals/game1nbafinals_parsed.json”</li>
+</ul>
+</li>
+<li>Run the command “python clean_tweets.py” to preprocess the gathered tweet data.<ul>
+<li>Input file: “Data/Game_1_Data/game1nbafinals/game1nbafinals_parsed.json”</li>
+<li>Output file: “Data/Game_1_Data/game1nbafinals/game1nbafinals_cleaned.json”</li>
+</ul>
+</li>
+<li>Run the command “python classifier.py” to train Naive Bayes models on the sentiment140 training data and classify the gathered tweet data. NOTE: Classifier.py takes 2 hours to run on the data file we used for this checkpoint. We recommend you don’t actually run this file.<ul>
+<li>Input file: “Data/Game_1_Data/game1nbafinals/game1nbafinals_cleaned.json”</li>
+<li>Output file: “Data/Game_1_Data/game1nbafinals/game1nbafinals_classified.json” </li>
+</ul>
+</li>
+<li>Run the command “python BM25.py” to rank gathered tweet data based on example queries. You will see the rankings on the console</li>
+</ul>
+<h2 id="below-are-in-depth-explanations-of-the-four-python-source-files-for-this-checkpoint-">Below are in-depth explanations of the four python source files for this checkpoint.</h2>
+<h3 id="bm25-scorer-">BM25 scorer:</h3>
+<p>In this checkpoint, the bm25.py was created. In this file, the BM25 class has all the functions needed to implement the bm25 algorithm. Just a note that the functions in this class were taken from the github page <a href="https://gist.github.com/koreyou/f3a8a0470d32aa56b32f198f49a9f2b8">https://gist.github.com/koreyou/f3a8a0470d32aa56b32f198f49a9f2b8</a>, which allows complete use of its code by anyone. All other code outside of the BM25 class is original code. The file essentially goes through all of the processed data, stores it, and uses it in the bm25 algorithm. There are multiple test queries created to test the correctness of the code. When running, the code uses the test query, processed data, and bm25 algorithm to calculate the top 5 tweets based on its bm25 score and prints them out in order. Keep in mind that while this implementation of bm25 only uses one query, in the future we will have the user input their own query to test.</p>
+<h3 id="clean-tweets">Clean Tweets</h3>
+<p>The script “clean_tweets.py” takes a specified json file as input and cleans the data by removing emojis, new line characters, hashtags, non alphabet characters from tweets. Cleaned tweets are stored in to output file. The result is a flat list of tweet objects where each object has tweet id, raw text field, author id, created at data &amp; time, author user name on Twitter, and author Twitter handle, and cleaned text field.</p>
+<p>(already specified in clean_tweets.py)
+Input file: Data/Game_1_Data/game1nbafinals/game1nbafinals_parsed.json
+Output file: Data/Game_1_Data/game1nbafinals/game1nbafinals_cleaned.json</p>
+<h3 id="format-tweets">Format Tweets</h3>
+<p>The script “formatter.py” reformats the .json files retrieved from Twitter API to a more organized structure compatible with out classifier and scorer. The result is a flat list of tweet objects where each object has the tweet id, raw text field, author id, created at data &amp; time, author user name on Twitter, and author Twitter handle.   </p>
+<h3 id="classify-tweets">Classify Tweets</h3>
+<p>The file “classifier.py” classifies the gathered tweet data using the Sentiment140 training data. To create Naive Bayes models for sentiment classification, the file uses the textblob package. Due to memory constraints, a Naive Bayes model cannot be trained with more than 2000 tweets from the training data. Therefore, the file creates multiple models (one at a time) over different iterations, with each modeling training on 1000 positive tweets and 1000 negative tweets. On our example data file, 10 of these iterations took about two hours, so time is still a limiting factor in how much we can train our model(s). Once the iterations are done, the gathered tweet data is classified as positive, negative, or neutral based on the aggregated decisions of the individual Naive Bayes models.</p>
+<h2 id="things-to-improve-for-final-product-">Things to improve for final product:</h2>
+<ul>
+<li>More robust data cleaning</li>
+<li>Extend formatter.py, clean_tweets.py, and classifier.py to dynamically run on all data files</li>
+<li>Tune parameters for BM25</li>
+<li>Refactor BM25.py to accept dynamic query input</li>
+</ul>

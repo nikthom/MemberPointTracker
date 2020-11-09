@@ -1,0 +1,86 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Dynamic Render Path",
+      "warning_code": 15,
+      "fingerprint": "378082454d97d60a7aa8ca6e6af6915b93a8480ce792b4cffb4cea39227c4969",
+      "check_name": "Render",
+      "message": "Render path contains parameter value",
+      "file": "app/controllers/static_controller.rb",
+      "line": 5,
+      "link": "https://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
+      "code": "render(action => params[:page], {})",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "StaticController",
+        "method": "show"
+      },
+      "user_input": "params[:page]",
+      "confidence": "High",
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "b78b443a8b6e7102a9f2a16b6466dd1bcf30a5b94411d52d0ec3fad4090d3957",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/controllers/point_entries_controller.rb",
+      "line": 5,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "PointEntry.order(((sort_column_entries + \" \") + sort_direction_entries))",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "PointEntriesController",
+        "method": "view"
+      },
+      "user_input": "sort_column_entries",
+      "confidence": "Medium",
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "db23c70d4941ad8b2eebe1827d91d8191c4ee8e90cddff94b3b7c4544a08ba2d",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/controllers/members_controller.rb",
+      "line": 8,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "Officer.order(((sort_column_officers + \" \") + sort_direction_officers))",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "MembersController",
+        "method": "index"
+      },
+      "user_input": "sort_column_officers",
+      "confidence": "Medium",
+      "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "f4945736f1b51ca951f45f082b1e1fc0a822e42ea206e8ae2d42359c03fee0e3",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/controllers/members_controller.rb",
+      "line": 7,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "Member.order(((sort_column_members + \" \") + sort_direction_members))",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "MembersController",
+        "method": "index"
+      },
+      "user_input": "sort_column_members",
+      "confidence": "Medium",
+      "note": ""
+    }
+  ],
+  "updated": "2020-11-08 11:54:05 -0600",
+  "brakeman_version": "4.9.1"
+}

@@ -1,3 +1,6 @@
+require 'http'
+require 'cgi'
+require 'json'
 class MembersController < ApplicationController
   helper_method :sort_column_members, :sort_direction_members, :sort_direction_officers, :sort_column_officers
   layout 'navbar'
@@ -120,6 +123,52 @@ class MembersController < ApplicationController
     @member.destroy
     flash[:notice] = "A member <#{@member.name}> was deleted successfully"
     redirect_to(members_path)
+  end
+
+  def loadAttendanceData
+    #do users table
+    @response = HTTP.get 'https://asabe-pt-test.herokuapp.com/api/v1/users?token=b0f368ceed01c59e41714b6bbd04e8e3'
+    @response = @response.body
+    @response = JSON.parse(@response)
+    hash = {}
+    
+    for i in 0..@response.length - 1
+      hash[@response[i]['id']] = @response[i]['uin']
+      if !@response[i]['is_admin'] && !Member.exists?(uin: @response[i]['uin'])
+        Member.create(:name => @response[i]['name'], :email => @response[i]['email'], :uin => @response[i]['uin'], :points => 0)
+      end
+
+    end
+    #do response for events
+    @events = HTTP.get 'https://asabe-pt-test.herokuapp.com/api/v1/events?token=b0f368ceed01c59e41714b6bbd04e8e3'
+    @events = @events.body
+    @events = JSON.parse(@events)
+    Event.all.each do |event|
+      event.destroy
+    end
+    for i in 0..@events.length - 1
+        Event.create(:name => @events[i]['title'], :description => @events[i]['description'], :pointsWorth => 5, :ptId => @events[i]['id'])
+        temp = 5
+    end
+    #@response = @events[0]['title']
+    #do response for attendance entries
+    @entries = HTTP.get 'https://asabe-pt-test.herokuapp.com/api/v1/attendances?token=b0f368ceed01c59e41714b6bbd04e8e3'
+    @entries = @entries.body
+    @entries = JSON.parse(@entries)
+    for i in 0..@entries.length - 1
+      if !Attendance.exists?(uin: hash[@entries[i]['user'].to_i], eventId: @entries[i]['event'])
+        hash[:temp] = hash[@entries[i]['user'].to_i]
+        Attendance.create(:uin => hash[@entries[i]['user'].to_i], :eventId => @entries[i]['event'])
+        @temp = Member.find_by_uin(hash[@entries[i]['user'].to_i])
+        #need to do for officers later
+        if @temp
+          @temp.points += 5
+           @temp.save
+        end
+      end
+    end
+    @response = hash
+    redirect_to(root_path)
   end
 
   private
