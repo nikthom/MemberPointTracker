@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   post "officers/processNewPointEntry"
 
   get "members/newPointEntry"
+  get "members/loadAttendanceData"
   post "members/processNewPointEntry"
 
   get "point_entries/view"

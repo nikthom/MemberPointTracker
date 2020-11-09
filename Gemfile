@@ -24,6 +24,8 @@ gem 'jbuilder', '~> 2.7'
 gem 'bcrypt', '~> 3.1.7'
 #use coffee-rails cus rails complains if not
 gem 'coffee-rails', '~> 5.0.0'
+#use http to use participation tracker api
+gem 'http'
 
 
 
