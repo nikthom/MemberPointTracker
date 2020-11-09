@@ -7,6 +7,11 @@ class OfficersController < ApplicationController
 
     def create
         @officer = Officer.new(officerParams)
+        if Officer.exists?(uin: @officer.uin)
+          flash.now[:notice] = "An officer with that UIN already exists."
+          render(new_officer_path)
+          return
+        end
         if @officer.save
             redirect_to(root_path)
         else
