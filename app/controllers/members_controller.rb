@@ -157,7 +157,6 @@ class MembersController < ApplicationController
     @entries = JSON.parse(@entries)
     for i in 0..@entries.length - 1
       if !Attendance.exists?(uin: hash[@entries[i]['user'].to_i], eventId: @entries[i]['event'])
-        hash[:temp] = hash[@entries[i]['user'].to_i]
         Attendance.create(:uin => hash[@entries[i]['user'].to_i], :eventId => @entries[i]['event'])
         @temp = Member.find_by_uin(hash[@entries[i]['user'].to_i])
         #need to do for officers later
@@ -168,7 +167,8 @@ class MembersController < ApplicationController
       end
     end
     @response = hash
-    redirect_to(root_path)
+    flash[:notice] = "Data from participation tracker loaded"
+    redirect_to(members_path)
   end
 
   private
