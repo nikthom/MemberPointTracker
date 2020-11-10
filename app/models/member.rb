@@ -1,12 +1,16 @@
 class Member < ApplicationRecord
 
     validates_uniqueness_of :uin
-
     has_many :attendance_entries, {:foreign_key => "uin"}
-    #def specialDelete
-        #find attendance entries to delete too
-     #   self.destroy
-    #end
+
+    def specialDelete
+        #find attendance entries to delete
+        @attendances = Attendance.where(:uin => self.uin) 
+        @attendances.each do |attendance|
+            attendance.destroy
+        end
+        self.destroy
+    end
 
 
     def self.to_csv

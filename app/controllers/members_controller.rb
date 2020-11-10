@@ -3,7 +3,7 @@ require 'cgi'
 require 'json'
 class MembersController < ApplicationController
   helper_method :sort_column_members, :sort_direction_members, :sort_direction_officers, :sort_column_officers
-  layout 'navbar'
+  layout 'navbar', :except => [:login, :show_member, :attemptLogin]
 
   def index
     #@members = Member.order(:points => "desc")
@@ -33,13 +33,18 @@ class MembersController < ApplicationController
     end
 
     @outArr = []
-    @entries = AttendanceEntry.where(:uin => @uin)
+    #@entries = AttendanceEntry.where(:uin => @uin)
+    @entries = Attendance.where(:uin => @uin)
+
 
     @totalAttendancePoints = 0
     @entries.each do |entry| 
-      currEvent = entry.event
-      @outArr.append(currEvent)
-      @totalAttendancePoints += currEvent.pointsWorth
+      #currEvent = entry.event
+      currEvent = Event.find_by_ptId(entry.eventId)
+      if currEvent
+        @outArr.append(currEvent)
+        @totalAttendancePoints += currEvent.pointsWorth
+      end
     end
 
   end
@@ -120,9 +125,66 @@ class MembersController < ApplicationController
 
   def destroy
     @member = Member.find(params[:id])
-    @member.destroy
+    @member.specialDelete
     flash[:notice] = "A member <#{@member.name}> was deleted successfully"
     redirect_to(members_path)
+  end
+
+  def login
+    #form
+
+  end
+
+  def logout
+    session[:memberId] = nil
+    redirect_to(members_login_path)
+  end  
+
+  def attemptLogin
+    if params[:uin].present?
+      currUser = Member.find_by_uin(params[:uin])
+      if currUser 
+        session[:memberId] = currUser.id
+        flash[:notice] = "User <#{currUser.name}> has successfully logged in!"
+        redirect_to(members_show_member_path)
+      else
+        flash.now[:notice] = "Invalid UIN"
+        render('login')
+      end
+    else
+      flash.now[:notice] = "Please fill in your UIN"
+      render('login')
+    end
+
+    
+
+  end
+
+  def show_member
+    @member_id = session[:memberId]
+    @member = Member.find(@member_id)
+    @uin = @member.uin
+    @customPoints = PointEntry.where(:uin => @uin)
+
+    @totalCustomPoints = 0
+    @customPoints.each do |n|
+      @totalCustomPoints += (n.points_add + n.points_remove)
+    end
+
+    @outArr = []
+    #@entries = AttendanceEntry.where(:uin => @uin)
+    @entries = Attendance.where(:uin => @uin)
+
+
+    @totalAttendancePoints = 0
+    @entries.each do |entry| 
+      #currEvent = entry.event
+      currEvent = Event.find_by_ptId(entry.eventId)
+      if currEvent
+        @outArr.append(currEvent)
+        @totalAttendancePoints += currEvent.pointsWorth
+      end
+    end
   end
 
   def loadAttendanceData
@@ -148,26 +210,37 @@ class MembersController < ApplicationController
     end
     for i in 0..@events.length - 1
         Event.create(:name => @events[i]['title'], :description => @events[i]['description'], :pointsWorth => 5, :ptId => @events[i]['id'])
-        temp = 5
     end
-    #@response = @events[0]['title']
     #do response for attendance entries
     @entries = HTTP.get 'https://asabe-pt-test.herokuapp.com/api/v1/attendances?token=b0f368ceed01c59e41714b6bbd04e8e3'
     @entries = @entries.body
     @entries = JSON.parse(@entries)
     for i in 0..@entries.length - 1
       if !Attendance.exists?(uin: hash[@entries[i]['user'].to_i], eventId: @entries[i]['event'])
-        Attendance.create(:uin => hash[@entries[i]['user'].to_i], :eventId => @entries[i]['event'])
-        @temp = Member.find_by_uin(hash[@entries[i]['user'].to_i])
-        #need to do for officers later
-        if @temp
-          @temp.points += 5
-           @temp.save
+        attendance = Attendance.create(:uin => hash[@entries[i]['user'].to_i], :eventId => @entries[i]['event'])
+        @mem = Member.find_by_uin(hash[@entries[i]['user'].to_i])
+        if @mem
+          @mem.points += 5
+          @mem.save
+        else
+          @off = Officer.find_by_uin(hash[@entries[i]['user'].to_i])
+          if @off
+            @off.points += 5
+            @off.save
+          else
+            differentFlash = TRUE
+            attendance.destroy
+          end
         end
       end
     end
     @response = hash
-    flash[:notice] = "Data from participation tracker loaded"
+    if differentFlash
+      flash[:notice] = "Data from participation tracker loaded. Note that participation data exists for an officer account that has not yet been created."
+    else
+      flash[:notice] = "Data from participation tracker loaded"
+    end
+    #Member.resetHash(hash)
     redirect_to(members_path)
   end
 

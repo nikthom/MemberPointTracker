@@ -3,6 +3,15 @@ class Officer < ApplicationRecord
 
     has_many :attendance_entries, {:foreign_key => "uin"}
 
+    def specialDelete
+        #find attendance entries to delete
+        @attendances = Attendance.where(:uin => self.uin) 
+        @attendances.each do |attendance|
+            attendance.destroy
+        end
+        self.destroy
+    end
+    
     def self.to_csv
         attributes = %w{name email position uin points}
 
