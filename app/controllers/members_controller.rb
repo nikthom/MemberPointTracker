@@ -3,7 +3,7 @@ require 'cgi'
 require 'json'
 class MembersController < ApplicationController
   helper_method :sort_column_members, :sort_direction_members, :sort_direction_officers, :sort_column_officers
-  layout 'navbar'
+  layout 'navbar', :except => [:login, :show_member, :attemptLogin]
 
   def index
     #@members = Member.order(:points => "desc")
@@ -33,13 +33,18 @@ class MembersController < ApplicationController
     end
 
     @outArr = []
-    @entries = AttendanceEntry.where(:uin => @uin)
+    #@entries = AttendanceEntry.where(:uin => @uin)
+    @entries = Attendance.where(:uin => @uin)
+
 
     @totalAttendancePoints = 0
     @entries.each do |entry| 
-      currEvent = entry.event
-      @outArr.append(currEvent)
-      @totalAttendancePoints += currEvent.pointsWorth
+      #currEvent = entry.event
+      currEvent = Event.find_by_ptId(entry.eventId)
+      if currEvent
+        @outArr.append(currEvent)
+        @totalAttendancePoints += currEvent.pointsWorth
+      end
     end
 
   end
@@ -125,6 +130,63 @@ class MembersController < ApplicationController
     redirect_to(members_path)
   end
 
+  def login
+    #form
+
+  end
+
+  def logout
+    session[:memberId] = nil
+    redirect_to(members_login_path)
+  end  
+
+  def attemptLogin
+    if params[:uin].present?
+      currUser = Member.find_by_uin(params[:uin])
+      if currUser 
+        session[:memberId] = currUser.id
+        flash[:notice] = "User <#{currUser.name}> has successfully logged in!"
+        redirect_to(members_show_member_path)
+      else
+        flash.now[:notice] = "Invalid UIN"
+        render('login')
+      end
+    else
+      flash.now[:notice] = "Please fill in your UIN"
+      render('login')
+    end
+
+    
+
+  end
+
+  def show_member
+    @member_id = session[:memberId]
+    @member = Member.find(@member_id)
+    @uin = @member.uin
+    @customPoints = PointEntry.where(:uin => @uin)
+
+    @totalCustomPoints = 0
+    @customPoints.each do |n|
+      @totalCustomPoints += (n.points_add + n.points_remove)
+    end
+
+    @outArr = []
+    #@entries = AttendanceEntry.where(:uin => @uin)
+    @entries = Attendance.where(:uin => @uin)
+
+
+    @totalAttendancePoints = 0
+    @entries.each do |entry| 
+      #currEvent = entry.event
+      currEvent = Event.find_by_ptId(entry.eventId)
+      if currEvent
+        @outArr.append(currEvent)
+        @totalAttendancePoints += currEvent.pointsWorth
+      end
+    end
+  end
+
   def loadAttendanceData
     #do users table
     @response = HTTP.get 'https://asabe-pt-test.herokuapp.com/api/v1/users?token=b0f368ceed01c59e41714b6bbd04e8e3'
@@ -178,7 +240,7 @@ class MembersController < ApplicationController
     else
       flash[:notice] = "Data from participation tracker loaded"
     end
-    Member.resetHash(hash)
+    #Member.resetHash(hash)
     redirect_to(members_path)
   end
 
