@@ -7,6 +7,11 @@ class OfficersController < ApplicationController
 
     def create
         @officer = Officer.new(officerParams)
+        if Officer.exists?(uin: @officer.uin)
+          flash.now[:notice] = "An officer with that UIN already exists."
+          render(new_officer_path)
+          return
+        end
         if @officer.save
             redirect_to(root_path)
         else
@@ -25,7 +30,8 @@ class OfficersController < ApplicationController
 
 
       @outArr = []
-      @entries = AttendanceEntry.where(:uin => @uin)
+      #@entries = AttendanceEntry.where(:uin => @uin)
+      @entries = Attendance.where(:uin => @uin)
       @customPoints = PointEntry.where(:uin => @uin)
 
       @totalCustomPoints = 0
@@ -36,9 +42,12 @@ class OfficersController < ApplicationController
   
       @totalAttendancePoints = 0
       @entries.each do |entry| 
-        currEvent = entry.event
-        @outArr.append(currEvent)
-        @totalAttendancePoints += currEvent.pointsWorth
+        #currEvent = entry.event
+        currEvent = Event.find_by_ptId(entry.eventId)
+        if currEvent
+          @outArr.append(currEvent)
+          @totalAttendancePoints += currEvent.pointsWorth
+        end
       end      
 
     end  
@@ -68,7 +77,7 @@ class OfficersController < ApplicationController
 
     def destroy
       @officer = Officer.find(params[:id])
-      @officer.destroy
+      @officer.specialDelete
       flash[:notice] = "An officer <#{@officer.name}> was deleted successfully"
       redirect_to(members_path)
     end

@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-#ruby '2.7.1'
-ruby '2.6.6'
+ruby '2.7.1'
+#ruby '2.6.6'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.3'
@@ -24,6 +24,8 @@ gem 'jbuilder', '~> 2.7'
 gem 'bcrypt', '~> 3.1.7'
 #use coffee-rails cus rails complains if not
 gem 'coffee-rails', '~> 5.0.0'
+#use http to use participation tracker api
+gem 'http'
 
 
 

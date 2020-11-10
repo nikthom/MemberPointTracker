@@ -11,7 +11,12 @@ Rails.application.routes.draw do
   post "officers/processNewPointEntry"
 
   get "members/newPointEntry"
+  get "members/loadAttendanceData"
   post "members/processNewPointEntry"
+  get "members/login"
+  post "members/attemptLogin"
+  get "members/show_member"
+  get "members/logout"
 
   get "point_entries/view"
   get "point_entries/index"
