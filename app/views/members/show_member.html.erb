@@ -1,0 +1,36 @@
+    <%if !flash[:notice].blank?%>
+        <div class="alert alert-success">
+          <%=flash[:notice]%>
+        </div>
+      <%end%>
+
+    <div class="col-md-2 float-right justify-content-end">
+            <%=link_to('Logout', members_logout_path, class: 'btn btn-primary btn-lg mb-3')%>
+    </div>
+
+    <div class="table">
+
+      <h3> <%= "#{@member.name}'s Point Log" %></h3>
+     
+       <p style = "font-size: 18px"> <%= "Total Points: #{@member.points}"   %>  </p>
+       <p style = "font-size: 18px"> <%= "Custom points: #{@totalCustomPoints}"   %>  </p> 
+       <p style = "font-size: 18px"> <%= "Attendance points: #{@totalAttendancePoints}"   %>  </p>
+        <table class="table table-striped" summary="members list">
+            <tr class="header">
+                <th><%= "Event Name"%></th>
+
+                <th><%= "Event Description"%></th>
+
+                <th><%= "Points Worth"%></th>
+
+            </tr>
+            <% @outArr.each do |event| %>
+                <tr>
+                    <td><%= event.name %></td>
+                    <td><%= event.description %></td>
+                    <td class="center"><%= event.pointsWorth %></td>
+
+                </tr>
+            <% end %>
+        </table>
+    </div>

@@ -30,7 +30,8 @@ class OfficersController < ApplicationController
 
 
       @outArr = []
-      @entries = AttendanceEntry.where(:uin => @uin)
+      #@entries = AttendanceEntry.where(:uin => @uin)
+      @entries = Attendance.where(:uin => @uin)
       @customPoints = PointEntry.where(:uin => @uin)
 
       @totalCustomPoints = 0
@@ -41,9 +42,12 @@ class OfficersController < ApplicationController
   
       @totalAttendancePoints = 0
       @entries.each do |entry| 
-        currEvent = entry.event
-        @outArr.append(currEvent)
-        @totalAttendancePoints += currEvent.pointsWorth
+        #currEvent = entry.event
+        currEvent = Event.find_by_ptId(entry.eventId)
+        if currEvent
+          @outArr.append(currEvent)
+          @totalAttendancePoints += currEvent.pointsWorth
+        end
       end      
 
     end  

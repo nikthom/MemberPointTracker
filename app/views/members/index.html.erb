@@ -10,7 +10,7 @@
     <div class="table-responsive col-sm-6">
 
       <h3>Manage Members</h3>
-      <%= link_to '<button type="button">Add a member</button>'.html_safe, new_member_path, :class => 'action new' %>
+      <!--<%= link_to '<button type="button">Add a member</button>'.html_safe, new_member_path, :class => 'action new' %> -->
       <%= link_to '<button type="button">Add/Substract Points to a Member</button>'.html_safe, members_newPointEntry_path, :class => 'action newPointEntry' %>
       <%= link_to '<button type="button">Export Member Data</button>'.html_safe, members_path(@members,format: 'csv'), :class => 'action new' %>
 
@@ -34,7 +34,7 @@
         <td class="center"><%= member.uin %></td>
         <td class="center"><%= member.points %></td>
         <td class="actions">
-            <!--<%= link_to("Points Log", log_member_path(member), :class => 'action show') %>-->
+            <%= link_to("Points Log", log_member_path(member), :class => 'action show') %>
             <%= link_to("Details", member_path(member), :class => 'action show') %>
             <%= link_to("Edit", edit_member_path(member), :class => 'action edit') %>
             <%= link_to("Delete", delete_member_path(member), :class => 'action delete') %>
@@ -75,7 +75,7 @@
         <td class="center"><%= officer.uin %></td>
         <td class="center"><%= officer.points %></td>
         <td class="actions">
-            <!--<%= link_to("Points Log", log_officer_path(officer), :class => 'action show') %>-->                       
+            <%= link_to("Points Log", log_officer_path(officer), :class => 'action show') %>
             <%= link_to("Details", officer_path(officer), :class => 'action show') %>
             <%= link_to("Edit", edit_officer_path(officer), :class => 'action edit') %>
             <%= link_to("Delete", delete_officer_path(officer), :class => 'action delete') %>
