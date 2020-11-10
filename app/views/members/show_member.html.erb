@@ -1,5 +1,12 @@
-<%= link_to("<< Back to List", members_path, :class => 'back-link') %>
+    <%if !flash[:notice].blank?%>
+        <div class="alert alert-success">
+          <%=flash[:notice]%>
+        </div>
+      <%end%>
 
+    <div class="col-md-2 float-right justify-content-end">
+            <%=link_to('Logout', members_logout_path, class: 'btn btn-primary btn-lg mb-3')%>
+    </div>
 
     <div class="table">
 

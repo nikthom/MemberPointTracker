@@ -10,15 +10,46 @@
 
   <body>
     <div class="container-fluid mb-3">
-        <div class=" row py-3" style="background: rgb(128,0,0); opacity: 0.9">
+        <div class=" row py-3" style="background: rgb(128,0,0); opacity: 0.9, z-index: 3">
             <div class="col-md-10">
                 <div class="row ml-3">
                     <h1 class="text-white text-bold ml-4">ASABE-MPT</h1>
                     <%=link_to('Home', members_path, class: 'nav-item nav-link text-white ml-4 my-nav-item')%>
-                    <%=link_to('Export Data', members_path(@members, format: :csv), class: 'nav-item nav-link text-white ml-4 my-nav-item')%>
                     <%=link_to('Point Change Log', point_entries_view_path, class: 'nav-item nav-link text-white ml-4 my-nav-item')%>
+                    <%=link_to('Leaderboard', leaderboard_view_path, class: 'nav-item nav-link text-white ml-4 my-nav-item')%>
+                    <div class="dropdown show">
+                      <a class="btn btn-link dropdown-toggle text-white ml-4 my-nav-item" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Backup
+                      </a>
+
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="/officers.csv">Backup Officer Data</a>
+                        <a class="dropdown-item" href="/members.csv">Backup Member Data</a>
+                        <a class="dropdown-item" href="/point_entries/index.csv">Backup Custom Point Entries</a>
+
+                        
+                      </div>
+                    </div>
+
+                    <div class="dropdown show">
+                      <a class="btn btn-link dropdown-toggle text-white ml-4 my-nav-item" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Help Forms
+                      </a>
+
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="/contacts">Contact Us</a>
+                        <a class="dropdown-item" href="/system_administration">System Administration Tips</a>
+                        <a class="dropdown-item" href="/set_up">Installation Guide</a>
+                      </div>
+                    </div>
+
+                    <%=link_to('Participation Tracker', href = "https://urldefense.com/v3/__https://asabe-participation-tracker.herokuapp.com/__;!!KwNVnqRv!Rnjit63tioAl7SCLywdNaf_X4JtMnSNhWHWNAnVNTqKb_GsDYf4hy7W4QFW4IYdQekgHJLUBlQ$", class: 'nav-item nav-link text-white ml-4 my-nav-item')%>
+                    <%=link_to('Load Participation Data', href = "/members/loadAttendanceData", class: 'nav-item nav-link text-white ml-4 my-nav-item')%>
                 </div>
             </div>
+
+            
+
             <div class="col-md-2 justify-content-end">
                 <%=link_to('Logout', root_path, class: 'btn btn-primary btn-lg mb-3')%>
             </div>
