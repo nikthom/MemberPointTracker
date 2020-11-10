@@ -163,12 +163,25 @@ class MembersController < ApplicationController
         #need to do for officers later
         if @temp
           @temp.points += 5
-           @temp.save
+          @temp.save
+        else
+          @temp = Officer.find_by_uin(hash[@entries[i]['user'].to_i])
+          if @temp
+            @temp.points += 5
+            @temp.save
+          else
+            differentFlash = TRUE
+          end
         end
       end
     end
     @response = hash
-    redirect_to(root_path)
+    if differentFlash
+      flash[:notice] = "Data from participation tracker loaded. Note that participation data exists for an officer account that has not yet been created."
+    else
+      flash[:notice] = "Data from participation tracker loaded"
+    end
+    redirect_to(members_path)
   end
 
   private
