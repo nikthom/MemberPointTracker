@@ -73,7 +73,7 @@ class OfficersController < ApplicationController
 
     def destroy
       @officer = Officer.find(params[:id])
-      @officer.destroy
+      @officer.specialDelete
       flash[:notice] = "An officer <#{@officer.name}> was deleted successfully"
       redirect_to(members_path)
     end
