@@ -3,19 +3,6 @@ class Member < ApplicationRecord
     validates_uniqueness_of :uin
     has_many :attendance_entries, {:foreign_key => "uin"}
 
-    @@hash
-
-    def self.hash
-        @@hash
-    end
-
-    def self.resetHash(aHash)
-        #@@hash[3] = 4
-        @@hash = {}
-        aHash.each do |ptUserId, uin|
-            @@hash[uin.to_i] = ptUserId
-        end
-    end
     def specialDelete
         #find attendance entries to delete
         @attendances = Attendance.where(:uin => self.uin) 
