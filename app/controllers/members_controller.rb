@@ -189,7 +189,7 @@ class MembersController < ApplicationController
 
   def loadAttendanceData
     #do users table
-    @response = HTTP.get 'https://asabe-pt-test.herokuapp.com/api/v1/users?token=b0f368ceed01c59e41714b6bbd04e8e3'
+    @response = HTTP.get 'https://asabe-participation-tracker.herokuapp.com/api/v1/users?token=b0f368ceed01c59e41714b6bbd04e8e3'
     @response = @response.body
     @response = JSON.parse(@response)
     hash = {}
@@ -202,7 +202,7 @@ class MembersController < ApplicationController
 
     end
     #do response for events
-    @events = HTTP.get 'https://asabe-pt-test.herokuapp.com/api/v1/events?token=b0f368ceed01c59e41714b6bbd04e8e3'
+    @events = HTTP.get 'https://asabe-participation-tracker.herokuapp.com/api/v1/events?token=b0f368ceed01c59e41714b6bbd04e8e3'
     @events = @events.body
     @events = JSON.parse(@events)
     Event.all.each do |event|
@@ -212,11 +212,11 @@ class MembersController < ApplicationController
         Event.create(:name => @events[i]['title'], :description => @events[i]['description'], :pointsWorth => 5, :ptId => @events[i]['id'])
     end
     #do response for attendance entries
-    @entries = HTTP.get 'https://asabe-pt-test.herokuapp.com/api/v1/attendances?token=b0f368ceed01c59e41714b6bbd04e8e3'
+    @entries = HTTP.get 'https://asabe-participation-tracker.herokuapp.com/api/v1/attendances?token=b0f368ceed01c59e41714b6bbd04e8e3'
     @entries = @entries.body
     @entries = JSON.parse(@entries)
     for i in 0..@entries.length - 1
-      if !Attendance.exists?(uin: hash[@entries[i]['user'].to_i], eventId: @entries[i]['event'])
+      if !Attendance.exists?(uin: hash[@entries[i]['user'].to_i], eventId: @entries[i]['event']) and Event.exists?(ptId: @entries[i]['event'])
         attendance = Attendance.create(:uin => hash[@entries[i]['user'].to_i], :eventId => @entries[i]['event'])
         @mem = Member.find_by_uin(hash[@entries[i]['user'].to_i])
         if @mem
