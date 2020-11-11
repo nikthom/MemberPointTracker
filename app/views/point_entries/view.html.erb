@@ -1,35 +1,38 @@
 <a href = "/members"  class="btn btn-danger" role="button">Back to homepage</a>
-<div class="row justify-content-center">
-  <div class="col-auto">
-    <div clas="table-responsive">
-    <table class="table table-striped">
-    <tr class="header">
-        <th><%= "Changed By"%></th>
+<br/>
+<br/>
+<div clas="table-responsive">
+ <%= link_to '<button type="button">Export Custom Point Entry Data</button>'.html_safe, point_entries_index_path(@point_entries,format: 'csv'), :class => 'action new' %>
+  <br/>
+  <table class="table table-striped">
+  
+  <tr class="header">
+      <th><%= "Changed By"%></th>
 
-        <th><%= sortable_entries "name"%></th>
+      <th><%= sortable_entries "name"%></th>
 
-        <th><%= sortable_entries "uin"%></th>
+      <th><%= sortable_entries "uin"%></th>
 
-        <th><%= sortable_entries "points_add"%></th>
+      <th><%= sortable_entries "points_add"%></th>
 
-        <th><%= sortable_entries "points_remove"%></th>
+      <th><%= sortable_entries "points_remove"%></th>
 
-        <th><%= sortable_entries "created_at"%></th>
+      <th><%= sortable_entries "created_at"%></th>
 
-        <th><%= "Comments" %></th>
-    </tr>
-    <% @displayEntries.each do |entry| %>
-       <tr>
-         <td><%= entry['creator'] %></td>
-         <td><%= entry['name'] %></td>
-         <td><%= entry['uin'] %></td>
-         <td><%= entry['added'] %></td>
-         <td><%= entry['removed'] %></td>
-         <td><%= entry['createdAt'] %></td>
-         <td><%= entry['comments'] %></td>
-       </tr>
-    <% end %>
-    </table>
-  </div>
-  </div>
+      <th><%= "Comments" %></th>
+  </tr>
+  <% @displayEntries.each do |entry| %>
+     <tr>
+       <td><%= entry['creator'] %></td>
+       <td><%= entry['name'] %></td>
+       <td><%= entry['uin'] %></td>
+       <td><%= entry['added'] %></td>
+       <td><%= entry['removed'] %></td>
+       <td><%= entry['createdAt'] %></td>
+       <td><%= entry['comments'] %></td>
+     </tr>
+ <% end %>
+</table>
+
+
 </div>

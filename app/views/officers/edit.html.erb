@@ -13,11 +13,11 @@
       </tr>
       <tr>
         <th>Email</th>
-        <td><%= f.text_field(:email) %></td>
+        <td><%= f.email_field(:email) %></td>
       </tr>
       <tr>
         <th>Position</th>
-        <td><%= f.select(:position, ["Officer", "Above officer"]) %></td>
+        <td><%= f.select(:position, ["President", "Vice President", "Treasurer", "Secretary", "Event Coordinator", "Historian", "SEC Rep", "COALS Rep"], :include_blank => true) %></td>
       </tr>
       <tr>
         <th>UIN</th>

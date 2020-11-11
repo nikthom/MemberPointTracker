@@ -5,16 +5,36 @@ class PointEntriesController < ApplicationController
         @allEntries = PointEntry.order(sort_column_entries + " " + sort_direction_entries)
         @displayEntries = Array.new
         @allEntries.each do |entry|
+            shouldDisplay = TRUE
             displayEntry = Hash.new
-            displayEntry['creator'] = Officer.find(entry.officerId).name
+            if Officer.exists?(id: entry.officerId)
+              displayEntry['creator'] = Officer.find(entry.officerId).name
+            else
+              shouldDisplay = FALSE
+            end
             displayEntry['name'] = entry.name
-            displayEntry['uin'] = entry.uin
+            if Member.exists?(uin: entry.uin)
+              displayEntry['uin'] = entry.uin
+            else
+              shouldDisplay = FALSE
+            end
             displayEntry['added'] = entry.points_add
             displayEntry['removed'] = entry.points_remove
-            displayEntry['createdAt'] = entry.created_at
+            displayEntry['createdAt'] = entry.created_at.to_formatted_s(:custom)
             displayEntry['comments'] = entry.comment
-            @displayEntries.append(displayEntry)
+            if shouldDisplay
+              @displayEntries.append(displayEntry)
+            else
+              entry.destroy
+            end
         end
+    end
+
+    def index 
+      @pointEntry = PointEntry.order(:created_at => "desc")
+      respond_to do |format|
+        format.csv {send_data @pointEntry.to_csv, filename: "custom-point-entries-#{Date.today}.csv" }
+      end
     end
 
 

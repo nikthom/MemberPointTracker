@@ -11,37 +11,34 @@
 
           <h2 class="card-header text-center py-4" style="background: lightblue">
               <%= image_tag (asset_path('asabe-logo.jpg')) %>
-              <p>Officer Login Page </p>
+              <p>Member Login Page</p>
           </h2>
+
+
         
           <!--Card content-->
           <div class="card-body px-lg-5 pt-0">
-            <%= form_tag(officers_attemptLogin_path :method => 'post') do %>
+            <%= form_tag(members_attemptLogin_path :method => 'post') do %>
               
-              <div class="text-center mb-4">
-                  <h4 class="mb-2">Email</h4>
-                  <%= email_field_tag(:email, params[:email]) %>
-              </div>
 
               <div class="text-center mb-4">
-                <h4 class="mb-2">Password</h4>
-                <%= password_field_tag(:password) %>
+                <h4 class="mb-2">UIN</h4>
+                <%= text_field_tag(:uin) %>
               </div>
 
               <div class="text-center mb-1 pb-1">
                 <!-- Sign in button -->
                 <button type="submit" class="btn btn-primary btn-lg mb-3">Log In</button>
-                <p>or</p>
-                <a href="/officers/new" class="btn btn-primary btn-sm" role="button">
-                  Sign Up
-                </a>
+              </div>
 
-                <p>or</p>
-                <a href="/members/login" class="btn btn-primary btn-sm" role="button">
-                  Members Login Here
+            <div class="text-center mb-1 pb-1">
+                <!-- Sign in button -->
+                <a href="/officers/login" class="btn btn-primary btn-sm" role="button">
+                    Go to Officers Login
                 </a>
 
               </div>
+
             <% end %>
               <!-- Disclaimer -->
             <div class="text-left small">

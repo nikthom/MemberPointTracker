@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <div class="row justify-content-md-center">
+<div class="row justify-content-md-center">
     <div class="col-lg-4 my-5">
       <!-- Material form login -->
       <%if !flash[:notice].blank?%>
@@ -9,52 +9,52 @@
       <%end%>
       <div class="card mt-5">
 
-        <h2 class="card-header text-center py-4" style="background: lightblue">
-          Create an Account
-        </h2>
+          <h2 class="card-header text-center py-4" style="background: lightblue">
+              Create an Account
+          </h2>
 
-        <!--Card content-->
-        <div class="card-body px-lg-5 pt-0">
-          <%= form_for(@officer, :method => 'post') do |f| %>
+          <!--Card content-->
+          <div class="card-body px-lg-5 pt-0">
+            <%= form_for(@officer, :method => 'post') do |f| %>
 
-            <div class="mb-4">
-              <h4 class="mb-2">Name</h4>
-              <%= f.text_field(:name) %>
-            </div>
+              <div class="mb-4">
+                  <h4 class="mb-2">Name</h4>
+                  <%= f.text_field(:name) %>
+              </div>
 
-            <div class="mb-4">
-              <h4 class="mb-2">Email</h4>
-              <%= f.text_field(:email) %>
-            </div>
+              <div class="mb-4">
+                <h4 class="mb-2">Email</h4>
+                <%= f.email_field(:email) %>
+              </div>
 
-            <div class="mb-4">
-              <h4 class="mb-2">Password</h4>
-              <%= f.password_field(:password) %>
-            </div>
+              <div class="mb-4">
+                <h4 class="mb-2">Password</h4>
+                <%= f.password_field(:password) %>
+              </div>
 
-            <div class="mb-4">
-              <h4 class="mb-2">Position</h4>
-              <%= f.select(:position, ["President, Vice President, Treasurer, Secretary, Event Coordinator, Historian, SEC Rep, COALS Rep"]) %>
-            </div>
+              <div class="mb-4">
+                <h4 class="mb-2">Position</h4>
+                <%= f.select(:position, ["President", "Vice President", "Treasurer", "Secretary", "Event Coordinator", "Historian", "SEC Rep", "COALS Rep"], :include_blank => true) %>
+              </div>
 
-            <div class="mb-4">
-              <h4 class="mb-2">Points</h4>
-              <%= f.text_field(:points) %>
-            </div>
+              <div class="mb-4">
+                <h4 class="mb-2">Points</h4>
+                <%= f.text_field(:points) %>
+              </div>
 
-            <div class="mb-4">
-              <h4 class="mb-2">UIN</h4>
-              <%= f.text_field(:uin) %>
-            </div>
+              <div class="mb-4">
+                <h4 class="mb-2">UIN</h4>
+                <%= f.text_field(:uin) %>
+              </div>
 
-            <div class="text-center mb-1 pb-1">
-              <!-- Sign in button -->
-              <button type="submit" class="btn btn-primary btn-lg mb-3">Register</button>
+              <div class="text-center mb-1 pb-1">
+                <!-- Sign in button -->
+                <button type="submit" class="btn btn-primary btn-lg mb-3">Register</button>
 
-            </div>
-          <% end %>
-        </div>
+              </div>
+            <% end %>
+          </div>
       </div>
     </div>
-  </div>
+</div>
 </div>

@@ -34,11 +34,11 @@
     </tr>
     <tr>
       <th>Created</th>
-      <td><%= @officer.created_at %></td>
+      <td><%= @officer.created_at.to_formatted_s(:custom) %></td>
     </tr>
     <tr>
       <th>Updated</th>
-      <td><%= @officer.updated_at %></td>
+      <td><%= @officer.updated_at.to_formatted_s(:custom) %></td>
     </tr>
   </table>
 
