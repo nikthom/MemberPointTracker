@@ -13,7 +13,7 @@ class PointEntriesController < ApplicationController
               shouldDisplay = FALSE
             end
             displayEntry['name'] = entry.name
-            if Member.exists?(uin: entry.uin)
+            if Member.exists?(uin: entry.uin) or Officer.exists?(uin: entry.uin)
               displayEntry['uin'] = entry.uin
             else
               shouldDisplay = FALSE
