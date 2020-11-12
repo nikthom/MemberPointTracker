@@ -1,6 +1,7 @@
 class OfficersController < ApplicationController
 #  helper_method :sort_direction_officers, :sort_column_officers
-#  layout 'navbar'
+    layout 'navbar', :except => [:new, :create, :login, :attemptLogin]
+
     def new
         @officer = Officer.new({:points => 0})
     end

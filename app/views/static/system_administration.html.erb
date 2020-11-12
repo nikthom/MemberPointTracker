@@ -1,7 +1,7 @@
     <h1 id="system-administration">System Administration Guide</h1>
     
     <br/>
-    <h2 id="transfer-admin">Helpul Links</h2>
+    <h2 id="transfer-admin">Helpful Links</h2>
         <ul>
             <li>                 
                 <a href="/officers/login">
@@ -15,19 +15,65 @@
             </li>
             <li> 
                  <a href="https://urldefense.com/v3/__https://asabe-participation-tracker.herokuapp.com/__;!!KwNVnqRv!Rnjit63tioAl7SCLywdNaf_X4JtMnSNhWHWNAnVNTqKb_GsDYf4hy7W4QFW4IYdQekgHJLUBlQ$" >
-                        Go to Particpation Tracker Page
+                        Go to Participation Tracker Page
                 </a>
             </li>
         </ul>
     
     <br/>
-    <h2 id="transfer-admin">How to Transfer Officer Priveleges</h2>
 
+    <h2 id="participation-data">How to Load in Participation Data</h2>
+    <blockquote class ="blockquote">
+        <p>
+            Our site uses data from the Participation Tracker website to assign points based on attendance of organization events. 
+            To collect this data and update officer/member points, please click the "Load Participation Data" link at the top of the screen
+            on the navigation bar. We recommend you click this link after every event finishes, or when there has been an update on the Participation
+            Tracker site. Also, clicking this link will pull in new members that sign up on the Participation Tracker site, please refer to 
+            the section "How to Add Members" below for more information about adding new members.  
+        </p>
+    </blockquote>
     <br/>
+
+    <h2 id="transfer-president">How to Transfer President Privileges</h2>
+    <blockquote class ="blockquote">
+        <p>
+        To create a new president at the end of every semester, the current president will create a new officer account for the 
+        president elect. This can be done by clicking the "Add an Officer" button in the home page, filling out the form and selecting
+        president from the "Position" option, also be sure to note the password. Then the new president will login to that newly created 
+        account, and delete the current president's account as well as all the other previous officers.
+        </p>
+    </blockquote>
+    <br/>
+
+    <h2 id="add-officers">How to Add Officers</h2>
+    <blockquote class ="blockquote">
+        <p>
+               To add new officers, the president can send the new officers the link to the officer login page and the new officers can 
+               create their account by clicking "Officer Sign Up" towards the bottom. Or the president can create the account for the other 
+               officers by logging in and clicking the "Add an Officer" button and creating each officer manually, be sure to note the 
+               passwords and share them with the newly created officers.
+        </p>
+    </blockquote>
+    <br/>
+
+    <h2 id="add-members">How to Add Members</h2>
+    <blockquote class ="blockquote">
+        <p>
+               You may notice there is not a sign up button on the member login page, or an "Add a member" button on the home page, 
+               this is an intentional design. Since our website is connected with the Participation tracker site, we wanted to make 
+               sure both sites have the same members. So when members (non-officers) create their account on the participation tracker, 
+               it will be reflected on our point tracker. Thus, members first need to create an account on the participation tracker. After
+               they do so, click the "Load participation data" link on the navigation bar at the top of the page and new members will be loaded
+               onto the "Manage Members" table and they will be assigned points based on attendance. However, officers do need to create their
+               own account in the Officer Sign Up page or an existing officer can use the "Add an Officer button".   
+        </p>
+    </blockquote>
+    <br/>
+
     <h2 id="backup">How to Backup Data</h2>
     <blockquote class="blockquote">
         <p>
-        To secure club member and officer information, we reccomend backing up the data at least once a week. Lucky for you, 
+        To secure club member and officer information, we recommend backing up the data at least once a week. Lucky for you, 
         the development team provided a quick and easy way to back up the organization's data. At the top of your screen on the 
         navigation bar you will see a button labeled "Backup", just click on the button and three options will drop down to backup
         officer, member, or custom point entry data. After you click on each link, a csv file will be downloaded to your device.
@@ -40,5 +86,70 @@
             <li> <p> custom-point-entries-YYYY-MM-DD </p> </li>
         </ul>
     </blockquote>
+    <br/>
+
+
+    <h2 id="custom-entry">Custom-Point Entry Help</h2>
+    <blockquote class ="blockquote">
+        <p>
+            On the home page, on top of each table there is a "Add/Subtract Points to a ..." button. This button will take you to a 
+            form to add custom-points to a specific member or officer depending on which button you clicked. In the form, the first field
+            is the UIN of the member/officer you want to add or subtract points to (you have access to their UIN on the home page). The second
+            field is pre-set to the Officer id which we store internally, this is NOT the same as the officer UIN. The rest of the fields define how many 
+            points should be added or removed, and a comment section to explain the custom-point change. After the change request is confirmed, 
+            the points for the changed member or officer will be reflected in the table on the home page. Additionally, there is a Point Change log
+            where you can see all custom-point entries. Please refer to the section "Point Change Log Help" below for more details.  
+        </p>
+        
+    </blockquote>
+    <br/>
+
+    <h2 id="change-log">Point Change Log Help</h2>
+    <blockquote class ="blockquote">
+        <p>
+            The Point Change Log feature (accessible on the navigation bar at the top of the screen) keeps a record of all the custom point
+            entries for every member and officer created. You can sort the log by Name, UIN, points added, points removed, or created at date 
+            by clicking these labels at the top of the table. The log is meant to help you keep track of these custom point entries for auditing
+            purposes. Below is an explanation of each field in the table.
+        </p>
+        
+        <ul>
+            <li> <p> Changed By: shows the officer that made the custom point entry </p> </li>
+            <li> <p> Name: the name of the member or officer whose points were changed </p> </li>
+            <li> <p> UIN: the UIN of the member or officer whose points were changed </p> </li>
+            <li> <p> Points Add: the number of points added (0 if none) </p> </li>
+            <li> <p> Points Remove: the number of points removed (0 if none)</p> </li>
+            <li> <p> Created At: date in which the custom=point entry was created</p> </li>
+            <li> <p> Comments: a comment added by the officer who made the custom-point entry </p> </li>
+        </ul>
+    </blockquote>
+    <br/>
+
+    <h2 id="leaderboard">Leaderboard Help</h2>
+    <blockquote class ="blockquote">
+        <p>
+            The Leaderboard page allows the officers to pull the top performing members/officers in the organization, and share this data
+            in a presentation without showing all the sensitive information on the home page. You can filter if you want to view member, 
+            officer, or both member and officer information by selecting the appropriate button. Also, you can select how many places to view
+            by clicking the "Get Top" dropdown button and choosing between all or top 3, 5, 10, 15. Finally, click Apply and the leaderboard 
+            will be updated. If there is a tie in points, for example three members are tied for 5th then all three will be displayed. 
+        </p>
+        
+    </blockquote>
+    <br/>
+
+    <h2 id="heroku">Heroku Help</h2>
+    <blockquote class ="blockquote">
+        <p>
+            Heroku is a platform for deploying free websites. It is integrated with GitHub which stores the code for the project. Whenever the 
+            deploy button in Heroku is clicked the code from GitHub is built and then launched on the website url. As a whole you shouldn't need 
+            to do much except maybe change your url which can be done by changing the app name in the settings tab on the asabe-mpt app page. Still 
+            if you need help here is their help center <a href = "https://help.heroku.com/" > link.</a> If you need any more help or have questions,
+            feel free to contact the development team, our contact information can be found in the <a href="/contacts"> Contact Us </a> 
+            page under Help Forms. 
+        </p>
+    </blockquote>
+    <br/>
+
 
 
