@@ -11,6 +11,8 @@ A rails webapp that is used by tamu organizations to take and track member atten
     
 3. Have Yarn installed (for Bootstrap)
     * https://classic.yarnpkg.com/en/docs/install/#windows-stable
+4. We used this guide for setting up bootstrap so if you have any issues refer to this
+    * https://www.youtube.com/watch?v=BIxd501hP-g
     
 ## How to Execute Code
 
@@ -50,7 +52,14 @@ A rails webapp that is used by tamu organizations to take and track member atten
     * or any other port you specified
 
 ## How to Deply code in Heroku
+The easiest way to deploy code in Heroku is to setup CD with Heroku. Start by going to your project in Heroku as all of these steps can be done there.Note that CD can also be setup through a pipeline along with CI as described in one of the TA's videos.
+1. Connect the github repository to the Heroku app.
+2. Enable automatic deployment and select master as the branch to use.
+3. Add a procfile to your project with any commands you need to run on every build. Most likely you will just need the command we used which starts the database so consider copying our procfile.
+4. Refer to Heroku documentation for other commands you need.
 
+## How to perform CI
+The easiest way to figure this out is to refer to the video left by the TA. For our class it was in the labs section on eCampus. If it's not there consider asking Professor Wade or the TA.
 ## How to Perform Security Tests
 
 For security tests in our application we use the Brakeman gem to detect potential SQL injections.
